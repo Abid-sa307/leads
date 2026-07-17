@@ -371,8 +371,9 @@
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 18px;
-            padding: 1.25rem;
+            border-top: 4px solid var(--accent-indigo);
+            border-radius: 20px;
+            padding: 1.5rem 1.25rem;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -382,31 +383,65 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
         }
 
-        .stat-card::after {
-            content: '';
+        .stat-card.success { border-top-color: var(--accent-green); }
+        .stat-card.crawling { border-top-color: var(--accent-indigo); }
+        .stat-card.failed { border-top-color: var(--accent-red); }
+        .stat-card.pending { border-top-color: var(--accent-orange); }
+        .stat-card.emails { border-top-color: var(--accent-teal); }
+        .stat-card.phones { border-top-color: var(--accent-teal); }
+
+        .stat-icon-wrapper {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--accent-indigo);
-            opacity: 0.8;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--accent-indigo);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card.success .stat-icon-wrapper {
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-green);
+        }
+        .stat-card.crawling .stat-icon-wrapper {
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--accent-indigo);
+        }
+        .stat-card.pending .stat-icon-wrapper {
+            background: rgba(245, 158, 11, 0.08);
+            color: var(--accent-orange);
+        }
+        .stat-card.emails .stat-icon-wrapper,
+        .stat-card.phones .stat-icon-wrapper {
+            background: rgba(20, 184, 166, 0.08);
+            color: var(--accent-teal);
+        }
+        .stat-card.failed .stat-icon-wrapper {
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--accent-red);
         }
 
         .stat-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-4px);
             box-shadow: 0 12px 30px var(--accent-indigo-glow);
+            border-color: rgba(99, 102, 241, 0.2);
         }
-        .stat-card.success:after { background: var(--accent-green); }
-        .stat-card.crawling:after { background: var(--accent-indigo); }
-        .stat-card.failed:after { background: var(--accent-red); }
-        .stat-card.pending:after { background: var(--accent-orange); }
-        .stat-card.emails:after { background: var(--accent-teal); }
-        .stat-card.phones:after { background: var(--accent-teal); }
+        .stat-card.success:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.2); }
+        .stat-card.crawling:hover { box-shadow: 0 12px 30px var(--accent-indigo-glow); border-color: rgba(99, 102, 241, 0.2); }
+        .stat-card.pending:hover { box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.2); }
+        .stat-card.emails:hover, .stat-card.phones:hover { box-shadow: 0 12px 30px rgba(20, 184, 166, 0.15); border-color: rgba(20, 184, 166, 0.2); }
+        .stat-card.failed:hover { box-shadow: 0 12px 30px var(--accent-red-glow); border-color: rgba(239, 68, 68, 0.2); }
 
-        .stat-card.success:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.08); }
-        .stat-card.failed:hover { box-shadow: 0 12px 30px var(--accent-red-glow); }
+        .stat-card:hover .stat-icon-wrapper {
+            transform: scale(1.1);
+        }
 
         .stat-label {
             font-size: 0.76rem;
@@ -1081,22 +1116,26 @@
                     <div>
                         <!-- Stats Grid -->
                         <div class="stats-grid">
-                            <div class="stat-card">
+                            <div class="stat-card total">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-database"></i></div>
                                 <span class="stat-label">Total Leads</span>
                                 <span id="stat-total" class="stat-value">-</span>
-                                <span class="stat-desc">In Database</span>
+                                <span class="stat-desc">Imported targets</span>
                             </div>
                             <div class="stat-card success">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-circle-check"></i></div>
                                 <span class="stat-label">Completed</span>
                                 <span id="stat-done" class="stat-value">-</span>
-                                <span id="stat-success-rate" class="stat-desc">0.0% Success Rate</span>
+                                <span id="stat-success-rate" class="stat-desc">0.0% Success Yield</span>
                             </div>
                             <div class="stat-card crawling">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-spinner fa-spin"></i></div>
                                 <span class="stat-label">Active / Crawling</span>
                                 <span id="stat-crawling" class="stat-value">-</span>
-                                <span class="stat-desc">Async Workers in progress</span>
+                                <span class="stat-desc">Workers running</span>
                             </div>
                             <div class="stat-card pending">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-hourglass-half"></i></div>
                                 <span class="stat-label">Remaining</span>
                                 <span id="stat-pending" class="stat-value">-</span>
                                 <span id="stat-eta" class="stat-desc">ETA: --:--</span>
@@ -1105,19 +1144,22 @@
 
                         <div class="stats-grid">
                             <div class="stat-card emails">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
                                 <span class="stat-label">Emails Discovered</span>
                                 <span id="stat-emails" class="stat-value">-</span>
                                 <span class="stat-desc">Valid email addresses</span>
                             </div>
                             <div class="stat-card phones">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-phone"></i></div>
                                 <span class="stat-label">Phones Discovered</span>
                                 <span id="stat-phones" class="stat-value">-</span>
                                 <span class="stat-desc">Valid telephone lines</span>
                             </div>
                             <div class="stat-card failed">
+                                <div class="stat-icon-wrapper"><i class="fa-solid fa-circle-xmark"></i></div>
                                 <span class="stat-label">Failed / No Site</span>
                                 <span id="stat-failed" class="stat-value">-</span>
-                                <span class="stat-desc">Resolving/crawl failures</span>
+                                <span class="stat-desc">Crawl failures</span>
                             </div>
                         </div>
 
