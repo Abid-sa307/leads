@@ -1,0 +1,24 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite database files and logs
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/output/
+logs/
+
+# IDE and Tool Caches
+.claude/
+.pytest_cache/
+.gemini/
+.vscode/
+.idea/

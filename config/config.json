@@ -1,0 +1,64 @@
+{
+  "concurrency": {
+    "browser_pool_size": 15,
+    "worker_count": 30,
+    "requests_per_second_per_domain": 1.0,
+    "max_concurrent_domains": 30
+  },
+  "timeouts": {
+    "page_load_seconds": 30,
+    "request_seconds": 15,
+    "dns_seconds": 5,
+    "resolve_timeout_seconds": 20
+  },
+  "retries": {
+    "max_attempts": 3,
+    "backoff_factor": 2.0,
+    "retry_on_status": [429, 500, 502, 503, 504]
+  },
+  "crawler": {
+    "headless": true,
+    "user_agent": "Mozilla/5.0 (compatible; IndustryDiscoveryBot/1.0; +https://example.com/bot)",
+    "accept_language": "en-US,en;q=0.9",
+    "pages_to_visit": ["/", "/contact", "/contact-us", "/about", "/about-us", "/careers", "/jobs", "/team"],
+    "respect_robots_txt": true,
+    "ssl_permissive": true,
+    "max_pages_per_industry": 10
+  },
+  "resolver": {
+    "use_cache": true,
+    "search_engine": "duckduckgo",
+    "fallback_patterns": [
+      "site:{name} official website",
+      "{name} {city} {state} official site"
+    ],
+    "verify_before_crawl": true
+  },
+  "extraction": {
+    "prefer_same_domain_emails": true,
+    "extract_exec_email": true,
+    "extract_hr_email": true,
+    "min_email_confidence": 0.7,
+    "phone_default_region": "IN"
+  },
+  "storage": {
+    "db_path": "data/industries.db",
+    "output_dir": "data/output",
+    "backup_on_start": true
+  },
+  "logging": {
+    "level": "INFO",
+    "log_dir": "logs",
+    "max_bytes": 10485760,
+    "backup_count": 5,
+    "console_level": "INFO"
+  },
+  "dashboard": {
+    "refresh_rate": 1.0,
+    "show_active_workers": true
+  },
+  "reports": {
+    "auto_generate_on_complete": true,
+    "include_raw_html": false
+  }
+}

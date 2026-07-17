@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Leads Discoverer Dashboard</title>
+    <!-- Google Fonts Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: rgba(99, 102, 241, 0.08);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent-indigo: #4f46e5;
+            --accent-teal: #0d9488;
+            --accent-red: #e11d48;
+            --accent-orange: #d97706;
+            --accent-green: #059669;
+            --shadow-glow: 0 10px 30px rgba(99, 102, 241, 0.08);
+            --shadow-glow-green: 0 10px 30px rgba(5, 150, 105, 0.08);
+            --shadow-glow-red: 0 10px 30px rgba(225, 29, 72, 0.08);
+            --table-header-bg: #f1f5f9;
+            --table-row-hover: #f8fafc;
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1;
+            --active-item-bg: #f8fafc;
+            --active-item-border: #e2e8f0;
+            --transition-speed: 0.3s;
+        }
+
+        body.dark-theme {
+            /* Dark theme */
+            --bg-color: #0b0f19;
+            --card-bg: rgba(22, 31, 48, 0.7);
+            --card-border: rgba(99, 102, 241, 0.15);
+            --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            --header-bg: rgba(15, 23, 42, 0.6);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-indigo: #6366f1;
+            --accent-teal: #14b8a6;
+            --accent-red: #f43f5e;
+            --accent-orange: #f59e0b;
+            --accent-green: #10b981;
+            --shadow-glow: 0 0 15px rgba(99, 102, 241, 0.25);
+            --shadow-glow-green: 0 0 15px rgba(16, 185, 129, 0.25);
+            --shadow-glow-red: 0 0 15px rgba(244, 63, 94, 0.25);
+            --table-header-bg: rgba(15, 23, 42, 0.8);
+            --table-row-hover: rgba(255, 255, 255, 0.02);
+            --input-bg: rgba(15, 23, 42, 0.5);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --active-item-bg: rgba(15, 23, 42, 0.4);
+            --active-item-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed), background-image var(--transition-speed);
+        }
+
+        body.dark-theme {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.08) 0%, transparent 40%);
+        }
+
+        /* Webkit scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(11, 15, 25, 0.05);
+        }
+        .dark-theme ::-webkit-scrollbar-track {
+            background: rgba(11, 15, 25, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.5);
+        }
+
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo {
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-teal));
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            color: var(--text-primary);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            transition: all var(--transition-speed);
+            outline: none;
+        }
+        .theme-toggle-btn:hover {
+            background: var(--accent-indigo);
+            color: white;
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        }
+
+        .crawler-status-badge {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--transition-speed);
+            color: var(--text-primary);
+        }
+
+        .crawler-status-badge.running {
+            border-color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-green);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+        }
+
+        .running .status-dot {
+            background: var(--accent-green);
+            animation: pulse-glow 1.5s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-indigo);
+            opacity: 0.7;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.25);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.06);
+        }
+        body.dark-theme .stat-card:hover {
+            box-shadow: var(--shadow-glow);
+        }
+
+        .stat-card.done::before { background: var(--accent-green); }
+        .stat-card.crawling::before { background: var(--accent-indigo); }
+        .stat-card.failed::before { background: var(--accent-red); }
+        .stat-card.pending::before { background: var(--accent-orange); }
+        .stat-card.emails::before { background: var(--accent-teal); }
+        .stat-card.phones::before { background: var(--accent-teal); }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Layout Grid */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--card-shadow);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .card-header {
+            margin-bottom: 1.15rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .card h2 i {
+            color: var(--accent-indigo);
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 11px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo), rgba(79, 70, 229, 0.9));
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+        }
+        .btn-primary:hover {
+            filter: brightness(1.05);
+            transform: scale(1.01);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--accent-red), rgba(225, 29, 72, 0.9));
+            color: white;
+        }
+        .btn-danger:hover {
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.2);
+            transform: scale(1.01);
+        }
+
+        .btn-secondary {
+            background: rgba(99, 102, 241, 0.06);
+            color: var(--text-primary);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.12);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-teal), rgba(13, 148, 136, 0.9));
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2);
+        }
+        .btn-accent:hover {
+            filter: brightness(1.05);
+            transform: scale(1.01);
+        }
+
+        .slider-container {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(99, 102, 241, 0.15);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-indigo);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Active Crawls */
+        .active-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .active-item {
+            background: var(--active-item-bg);
+            border: 1px solid var(--active-item-border);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 0.78rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            word-break: break-all;
+            color: var(--text-secondary);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        .active-item i {
+            color: var(--accent-teal);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-active {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 1.5rem 0;
+            font-style: italic;
+        }
+
+        /* Data Explorer */
+        .explorer-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            padding: 9px 16px 9px 40px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: all var(--transition-speed);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 8px rgba(79, 70, 229, 0.12);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .select-filter {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 9px 16px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            outline: none;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .select-filter:focus {
+            border-color: var(--accent-indigo);
+        }
+
+        /* Table CSS */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--active-item-border);
+            background: var(--card-bg);
+            min-height: 300px;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--table-header-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--active-item-border);
+            cursor: pointer;
+            user-select: none;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        th:hover {
+            color: var(--accent-indigo);
+        }
+
+        th i {
+            margin-left: 4px;
+            font-size: 0.72rem;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--active-item-border);
+            color: var(--text-secondary);
+            vertical-align: middle;
+            transition: border-color var(--transition-speed);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--table-row-hover);
+            color: var(--text-primary);
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .location-text {
+            font-size: 0.78rem;
+        }
+
+        .website-link {
+            color: var(--accent-teal);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+        }
+        .website-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+        }
+
+        .contact-item i {
+            width: 14px;
+            color: var(--text-secondary);
+        }
+
+        .tag-badge {
+            font-size: 0.65rem;
+            padding: 1px 5px;
+            border-radius: 4px;
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--accent-indigo);
+            font-weight: 600;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-pill.done { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.2); }
+        .status-pill.pending { background: rgba(245, 158, 11, 0.1); color: var(--accent-orange); border: 1px solid rgba(245, 158, 11, 0.2); }
+        .status-pill.crawling, .status-pill.resolving { background: rgba(99, 102, 241, 0.1); color: var(--accent-indigo); border: 1px solid rgba(99, 102, 241, 0.2); }
+        .status-pill.failed { background: rgba(225, 29, 72, 0.1); color: var(--accent-red); border: 1px solid rgba(225, 29, 72, 0.2); }
+        .status-pill.no_website { background: rgba(100, 116, 139, 0.1); color: var(--text-secondary); border: 1px solid rgba(100, 116, 139, 0.2); }
+
+        .error-btn {
+            background: none;
+            border: none;
+            color: var(--accent-red);
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-decoration: underline;
+            padding: 0;
+            margin-top: 4px;
+            font-family: inherit;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .page-info {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .page-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .page-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 7px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-family: inherit;
+            transition: all var(--transition-speed);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--accent-indigo);
+            color: white;
+            border-color: var(--accent-indigo);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            padding: 1.75rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 480px;
+            position: relative;
+            animation: modal-anim 0.25s ease;
+        }
+
+        @keyframes modal-anim {
+            from { transform: scale(0.96); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.15rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color var(--transition-speed);
+        }
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+            color: var(--accent-red);
+        }
+
+        .modal-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background: var(--bg-color);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            word-break: break-word;
+        }
+
+        .no-data {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 3rem 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title-container">
+            <div class="header-logo">
+                <i class="fa-solid fa-compass"></i>
+            </div>
+            <div>
+                <h1>Industry Leads Discoverer</h1>
+            </div>
+        </div>
+        
+        <div class="header-controls">
+            <button id="btn-theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <div id="crawler-status" class="crawler-status-badge">
+                <span class="status-dot"></span>
+                <span id="crawler-status-text">Idle</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Stats Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Leads</span>
+                <span id="stat-total" class="stat-value">-</span>
+                <span class="stat-meta">In Database</span>
+            </div>
+            <div class="stat-card done">
+                <span class="stat-label">Completed</span>
+                <span id="stat-done" class="stat-value">-</span>
+                <span id="stat-success-rate" class="stat-meta">0% Success</span>
+            </div>
+            <div class="stat-card crawling">
+                <span class="stat-label">Active / Crawling</span>
+                <span id="stat-crawling" class="stat-value">-</span>
+                <span class="stat-meta">Workers in progress</span>
+            </div>
+            <div class="stat-card pending">
+                <span class="stat-label">Remaining</span>
+                <span id="stat-pending" class="stat-value">-</span>
+                <span id="stat-eta" class="stat-meta">ETA: -</span>
+            </div>
+            <div class="stat-card failed">
+                <span class="stat-label">Failed / No Site</span>
+                <span id="stat-failed" class="stat-value">-</span>
+                <span class="stat-meta">Errors logged</span>
+            </div>
+            <div class="stat-card emails">
+                <span class="stat-label">Emails Discovered</span>
+                <span id="stat-emails" class="stat-value">-</span>
+                <span class="stat-meta">Validated contact addresses</span>
+            </div>
+            <div class="stat-card phones">
+                <span class="stat-label">Phones Discovered</span>
+                <span id="stat-phones" class="stat-value">-</span>
+                <span class="stat-meta">Validated phone lines</span>
+            </div>
+        </div>
+
+        <!-- Main Body -->
+        <div class="layout-grid">
+            <!-- Left: Sidebar Controls -->
+            <div>
+                <!-- Seeder Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-database"></i> Setup Data</h2>
+                    </div>
+                    <div class="controls-panel">
+                        <button id="btn-seed" class="btn btn-accent">
+                            <i class="fa-solid fa-seedling"></i> Seed Indian Sectors
+                        </button>
+                        <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4;">
+                            Loads ~120 well-known facilities across the 6 requested sectors: Industrial Manufacturing, Warehousing/Cold Storage, Educational Institutes, Factories, Offices, and Hospitals in India.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Crawler Control Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-sliders"></i> Controller</h2>
+                    </div>
+                    <div class="controls-panel">
+                        <button id="btn-start" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i> Start Discovery Scraper
+                        </button>
+                        <button id="btn-stop" class="btn btn-danger" style="display: none;">
+                            <i class="fa-solid fa-stop"></i> Stop Discovery Scraper
+                        </button>
+                        <button id="btn-reset" class="btn btn-secondary">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Database
+                        </button>
+                        
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Concurrency (Workers)</span>
+                                <span id="worker-count-val">30</span>
+                            </div>
+                            <input type="range" min="1" max="50" value="30" class="slider" id="worker-count-slider">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Crawling URLs -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-globe"></i> Active URLs</h2>
+                    </div>
+                    <div id="active-urls-list" class="active-list">
+                        <div class="no-active">No pages being crawled.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Data Table Explorer -->
+            <div class="card" style="margin-bottom: 0;">
+                <div class="explorer-header">
+                    <div class="search-container">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" class="search-input" placeholder="Search by name, city, state, email, phone...">
+                    </div>
+                    <div class="filter-group">
+                        <select id="filter-source" class="select-filter">
+                            <option value="all">All Sectors</option>
+                        </select>
+                        <select id="filter-status" class="select-filter">
+                            <option value="all">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="resolving">Resolving</option>
+                            <option value="crawling">Crawling</option>
+                            <option value="done">Completed</option>
+                            <option value="failed">Failed</option>
+                            <option value="no_website">No Website</option>
+                        </select>
+                        <select id="filter-contact" class="select-filter">
+                            <option value="all">All Contacts</option>
+                            <option value="any_email">Has Any Email</option>
+                            <option value="general_email">Has General Email</option>
+                            <option value="hr_email">Has HR Email</option>
+                            <option value="exec_email">Has Exec Email</option>
+                            <option value="phone">Has Phone Number</option>
+                            <option value="no_contact">No Contact Info</option>
+                        </select>
+                        <button id="btn-export" class="btn btn-secondary" style="width: auto; padding: 9px 16px;">
+                            <i class="fa-solid fa-download"></i> Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">ID <i class="fa-solid fa-sort"></i></th>
+                                <th data-field="industry_name">Industry Name <i class="fa-solid fa-sort"></i></th>
+                                <th>Location</th>
+                                <th>Official Website</th>
+                                <th>Discovered Contact Info</th>
+                                <th data-field="crawl_status">Status <i class="fa-solid fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body">
+                            <!-- Rows loaded via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-container">
+                    <div id="pagination-info" class="page-info">
+                        Showing 0 to 0 of 0 leads
+                    </div>
+                    <div class="page-controls">
+                        <button id="btn-prev-page" class="page-btn" disabled><i class="fa-solid fa-angle-left"></i> Prev</button>
+                        <button id="btn-next-page" class="page-btn" disabled>Next <i class="fa-solid fa-angle-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal-btn">&times;</span>
+            <div class="modal-title">Crawl Error Details</div>
+            <div id="modal-error-content" class="modal-text">
+                Some error message will go here...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let currentPage = 1;
+        const limit = 25;
+        let totalRecords = 0;
+        let sortField = 'id';
+        let sortOrder = 'asc';
+        let isRunning = false;
+        let statsInterval = null;
+        let tableDebounceTimeout = null;
+
+        // Elements
+        const leadsTableBody = document.getElementById('leads-table-body');
+        const searchInput = document.getElementById('search-input');
+        const filterStatus = document.getElementById('filter-status');
+        const filterSource = document.getElementById('filter-source');
+        const filterContact = document.getElementById('filter-contact');
+        const paginationInfo = document.getElementById('pagination-info');
+        const btnPrevPage = document.getElementById('btn-prev-page');
+        const btnNextPage = document.getElementById('btn-next-page');
+        
+        // Buttons
+        const btnStart = document.getElementById('btn-start');
+        const btnStop = document.getElementById('btn-stop');
+        const btnReset = document.getElementById('btn-reset');
+        const btnSeed = document.getElementById('btn-seed');
+        const btnExport = document.getElementById('btn-export');
+        const btnThemeToggle = document.getElementById('btn-theme-toggle');
+        const themeIcon = btnThemeToggle.querySelector('i');
+        
+        // Slider
+        const workerSlider = document.getElementById('worker-count-slider');
+        const workerVal = document.getElementById('worker-count-val');
+
+        // Modal
+        const errorModal = document.getElementById('error-modal');
+        const modalErrorContent = document.getElementById('modal-error-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // Theme check
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeIcon.className = 'fa-solid fa-sun';
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeIcon.className = 'fa-solid fa-moon';
+        }
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadIndustries();
+            
+            // Poll statistics every 1.5 seconds to keep dashboard alive
+            statsInterval = setInterval(loadStats, 1500);
+
+            // Theme toggle
+            btnThemeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('dark-theme')) {
+                    document.body.classList.remove('dark-theme');
+                    themeIcon.className = 'fa-solid fa-moon';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.body.classList.add('dark-theme');
+                    themeIcon.className = 'fa-solid fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Event Listeners for Filtering & Paging
+            searchInput.addEventListener('input', () => {
+                clearTimeout(tableDebounceTimeout);
+                tableDebounceTimeout = setTimeout(() => {
+                    currentPage = 1;
+                    loadIndustries();
+                }, 300);
+            });
+
+            filterStatus.addEventListener('change', () => {
+                currentPage = 1;
+                loadIndustries();
+            });
+
+            filterSource.addEventListener('change', () => {
+                currentPage = 1;
+                loadIndustries();
+            });
+
+            filterContact.addEventListener('change', () => {
+                currentPage = 1;
+                loadIndustries();
+            });
+
+            btnPrevPage.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadIndustries();
+                }
+            });
+
+            btnNextPage.addEventListener('click', () => {
+                if (currentPage * limit < totalRecords) {
+                    currentPage++;
+                    loadIndustries();
+                }
+            });
+
+            // Sorting Headers
+            document.querySelectorAll('th[data-field]').forEach(th => {
+                th.addEventListener('click', () => {
+                    const field = th.getAttribute('data-field');
+                    if (sortField === field) {
+                        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        sortField = field;
+                        sortOrder = 'asc';
+                    }
+                    
+                    // Reset table headers sort icon
+                    document.querySelectorAll('th i').forEach(icon => {
+                        icon.className = 'fa-solid fa-sort';
+                    });
+                    
+                    const activeIcon = th.querySelector('i');
+                    activeIcon.className = sortOrder === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
+                    
+                    loadIndustries();
+                });
+            });
+
+            // Scraper control events
+            btnStart.addEventListener('click', startCrawler);
+            btnStop.addEventListener('click', stopCrawler);
+            btnReset.addEventListener('click', resetDatabase);
+            btnSeed.addEventListener('click', seedDatabase);
+            btnExport.addEventListener('click', exportCSV);
+
+            // Concurrency Slider
+            workerSlider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                workerVal.innerText = val;
+            });
+            workerSlider.addEventListener('change', (e) => {
+                updateConcurrency(e.target.value);
+            });
+
+            // Modal events
+            closeModalBtn.addEventListener('click', () => {
+                errorModal.classList.remove('open');
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === errorModal) {
+                    errorModal.classList.remove('open');
+                }
+            });
+        });
+
+        // Load statistics
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+                
+                // Update badge
+                const statusBadge = document.getElementById('crawler-status');
+                const statusText = document.getElementById('crawler-status-text');
+                
+                isRunning = data.isRunning;
+                if (isRunning) {
+                    statusBadge.classList.add('running');
+                    statusText.innerText = 'Scraping';
+                    btnStart.style.display = 'none';
+                    btnStop.style.display = 'flex';
+                } else {
+                    statusBadge.classList.remove('running');
+                    statusText.innerText = 'Idle';
+                    btnStart.style.display = 'flex';
+                    btnStop.style.display = 'none';
+                }
+
+                // Update stat cards
+                document.getElementById('stat-total').innerText = data.stats.total.toLocaleString();
+                document.getElementById('stat-done').innerText = data.stats.done.toLocaleString();
+                document.getElementById('stat-crawling').innerText = data.stats.crawling.toLocaleString();
+                document.getElementById('stat-pending').innerText = data.stats.pending.toLocaleString();
+                document.getElementById('stat-failed').innerText = data.stats.failed.toLocaleString();
+                document.getElementById('stat-emails').innerText = data.stats.emailsFound.toLocaleString();
+                document.getElementById('stat-phones').innerText = data.stats.phonesFound.toLocaleString();
+                
+                document.getElementById('stat-success-rate').innerText = `${data.stats.successRate}% Success Rate`;
+
+                // Update ETA / Elapsed
+                const etaMeta = document.getElementById('stat-eta');
+                if (isRunning) {
+                    const elapsed = formatTime(data.stats.elapsedSeconds);
+                    const eta = data.stats.etaSeconds ? formatTime(data.stats.etaSeconds) : '--:--';
+                    etaMeta.innerText = `Elapsed: ${elapsed} | ETA: ${eta}`;
+                } else {
+                    etaMeta.innerText = 'Crawler Idle';
+                }
+
+                // Update Active URLs
+                const activeUrlsContainer = document.getElementById('active-urls-list');
+                if (data.activeUrls && data.activeUrls.length > 0) {
+                    activeUrlsContainer.innerHTML = data.activeUrls.map(url => `
+                        <div class="active-item">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <span>${url}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    activeUrlsContainer.innerHTML = '<div class="no-active">No pages being crawled.</div>';
+                }
+
+                // Refresh table if crawler is running
+                if (isRunning) {
+                    loadIndustries();
+                }
+            } catch (err) {
+                console.error("Failed to load statistics:", err);
+            }
+        }
+
+        // Load industries
+        async function loadIndustries() {
+            const status = filterStatus.value;
+            const source = filterSource.value;
+            const contactFilter = filterContact.value;
+            const search = searchInput.value;
+            const offset = (currentPage - 1) * limit;
+
+            const url = `/api/industries?status=${status}&source=${source}&contact_filter=${contactFilter}&search=${encodeURIComponent(search)}&sort_by=${sortField}&sort_order=${sortOrder}&limit=${limit}&offset=${offset}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                totalRecords = data.total;
+                
+                // Populate sectors dropdown if needed
+                updateSectorsDropdown(data.sources);
+
+                // Render table rows
+                if (data.items.length === 0) {
+                    leadsTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="no-data">No leads found matching your criteria.</td>
+                        </tr>
+                    `;
+                } else {
+                    leadsTableBody.innerHTML = data.items.map(item => {
+                        const hasEmail = item.email || item.exec_email || item.hr_email;
+                        const hasPhone = item.phone;
+                        
+                        let contactsHtml = '<ul class="contact-info-list">';
+                        if (item.email) contactsHtml += `<li class="contact-item"><i class="fa-regular fa-envelope"></i><span>${item.email}</span><span class="tag-badge">General</span></li>`;
+                        if (item.exec_email) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-user-tie"></i><span>${item.exec_email}</span><span class="tag-badge">Exec</span></li>`;
+                        if (item.hr_email) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-briefcase"></i><span>${item.hr_email}</span><span class="tag-badge">HR</span></li>`;
+                        if (item.phone) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-phone"></i><span>${item.phone}</span></li>`;
+                        if (!hasEmail && !hasPhone) contactsHtml += `<li class="contact-item" style="color: var(--text-secondary); font-style: italic;">No contacts discovered yet</li>`;
+                        contactsHtml += '</ul>';
+
+                        const websiteHtml = item.website ? `
+                            <a href="${item.website}" target="_blank" class="website-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                <span>${item.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
+                            </a>
+                        ` : '<span style="color: var(--text-secondary); font-style: italic;">No website</span>';
+
+                        const statusText = item.crawl_status;
+                        let statusHtml = `<span class="status-pill ${statusText}">${statusText.replace('_', ' ')}</span>`;
+                        if (statusText === 'failed' && item.error_message) {
+                            statusHtml += `<br><button class="error-btn" onclick="showError('${escapeHtml(item.error_message)}')">View Error</button>`;
+                        }
+
+                        return `
+                            <tr>
+                                <td>${item.id}</td>
+                                <td>
+                                    <div class="company-name">${escapeHtml(item.industry_name)}</div>
+                                    <div style="font-size: 0.72rem; color: var(--accent-indigo); margin-top: 4px;">
+                                        <i class="fa-solid fa-tag"></i> ${escapeHtml(item.source || 'Import')}
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="location-text">${escapeHtml(item.city || '')}${item.city && item.state ? ', ' : ''}${escapeHtml(item.state || '')}</span>
+                                    <div style="font-size: 0.72rem; color: var(--text-secondary);">${item.country || 'US'}</div>
+                                </td>
+                                <td>${websiteHtml}</td>
+                                <td>${contactsHtml}</td>
+                                <td>${statusHtml}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+
+                // Update pagination controls
+                const start = totalRecords === 0 ? 0 : offset + 1;
+                const end = Math.min(offset + limit, totalRecords);
+                paginationInfo.innerText = `Showing ${start} to ${end} of ${totalRecords.toLocaleString()} leads`;
+                
+                btnPrevPage.disabled = currentPage === 1;
+                btnNextPage.disabled = currentPage * limit >= totalRecords;
+
+            } catch (err) {
+                console.error("Failed to load industries:", err);
+            }
+        }
+
+        // Populate sectors dropdown dynamically
+        function updateSectorsDropdown(sources) {
+            const currentVal = filterSource.value;
+            
+            // Re-render choices keeping 'All Sectors' at top
+            filterSource.innerHTML = '<option value="all">All Sectors</option>';
+            sources.forEach(src => {
+                const opt = document.createElement('option');
+                opt.value = src;
+                opt.innerText = src;
+                if (src === currentVal) opt.selected = true;
+                filterSource.appendChild(opt);
+            });
+        }
+
+        // Actions
+        async function startCrawler() {
+            try {
+                const res = await fetch('/api/run', { method: 'POST' });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    loadStats();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                console.error("Error starting crawler:", err);
+            }
+        }
+
+        async function stopCrawler() {
+            try {
+                const res = await fetch('/api/stop', { method: 'POST' });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    loadStats();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                console.error("Error stopping crawler:", err);
+            }
+        }
+
+        async function resetDatabase() {
+            if (!confirm("Are you absolutely sure you want to reset all lead crawl statuses? This will wipe all discovered emails/phones and mark them all back as 'pending' for a clean re-run.")) {
+                return;
+            }
+            try {
+                const res = await fetch('/api/reset', { method: 'POST' });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    currentPage = 1;
+                    loadStats();
+                    loadIndustries();
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                console.error("Error resetting database:", err);
+            }
+        }
+
+        async function seedDatabase() {
+            btnSeed.disabled = true;
+            btnSeed.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Seeding...';
+            try {
+                const res = await fetch('/api/seed', { method: 'POST' });
+                const data = await res.json();
+                alert(data.message);
+                currentPage = 1;
+                loadStats();
+                loadIndustries();
+            } catch (err) {
+                console.error("Error seeding database:", err);
+                alert("Failed to seed database.");
+            } finally {
+                btnSeed.disabled = false;
+                btnSeed.innerHTML = '<i class="fa-solid fa-seedling"></i> Seed Indian Sectors';
+            }
+        }
+
+        async function updateConcurrency(workers) {
+            try {
+                await fetch(`/api/concurrency?worker_count=${workers}`, { method: 'POST' });
+            } catch (err) {
+                console.error("Failed to update workers concurrency:", err);
+            }
+        }
+
+        function exportCSV() {
+            const status = filterStatus.value;
+            const source = filterSource.value;
+            const contactFilter = filterContact.value;
+            const search = searchInput.value;
+            window.open(`/api/export?status=${status}&source=${source}&contact_filter=${contactFilter}&search=${encodeURIComponent(search)}`, '_blank');
+        }
+
+        // Show error popup
+        window.showError = function(errMsg) {
+            modalErrorContent.innerText = errMsg;
+            errorModal.classList.add('open');
+        }
+
+        // Helper utilities
+        function formatTime(secs) {
+            if (isNaN(secs) || secs < 0) return '0s';
+            const h = Math.floor(secs / 3600);
+            const m = Math.floor((secs % 3600) / 60);
+            const s = Math.floor(secs % 60);
+            
+            if (h > 0) {
+                return `${h}h ${m}m ${s}s`;
+            }
+            if (m > 0) {
+                return `${m}m ${s}s`;
+            }
+            return `${s}s`;
+        }
+
+        // Escaping HTML utility
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
