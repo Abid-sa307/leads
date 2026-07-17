@@ -3,64 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industry Leads Discoverer Dashboard</title>
+    <title>LeadDiscoverer Suite - Contact Discovery & Marketing Platform</title>
     <!-- Google Fonts Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* Light theme (default) */
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --card-border: rgba(99, 102, 241, 0.08);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            --header-bg: rgba(255, 255, 255, 0.8);
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --accent-indigo: #4f46e5;
-            --accent-teal: #0d9488;
-            --accent-red: #e11d48;
-            --accent-orange: #d97706;
-            --accent-green: #059669;
-            --shadow-glow: 0 10px 30px rgba(99, 102, 241, 0.08);
-            --shadow-glow-green: 0 10px 30px rgba(5, 150, 105, 0.08);
-            --shadow-glow-red: 0 10px 30px rgba(225, 29, 72, 0.08);
-            --table-header-bg: #f1f5f9;
-            --table-row-hover: #f8fafc;
+            /* Premium Light Theme */
+            --bg-color: #f3f4f6;
+            --sidebar-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(255, 255, 255, 0.4);
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --text-tertiary: #9ca3af;
+            --accent-indigo: #6366f1;
+            --accent-indigo-glow: rgba(99, 102, 241, 0.15);
+            --accent-teal: #14b8a6;
+            --accent-teal-glow: rgba(20, 184, 166, 0.15);
+            --accent-red: #ef4444;
+            --accent-red-glow: rgba(239, 68, 68, 0.15);
+            --accent-orange: #f59e0b;
+            --accent-green: #10b981;
+            --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -4px rgba(0, 0, 0, 0.02), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+            --table-header-bg: rgba(243, 244, 246, 0.8);
+            --table-row-hover: rgba(249, 250, 251, 0.8);
             --input-bg: #ffffff;
-            --input-border: #cbd5e1;
-            --active-item-bg: #f8fafc;
-            --active-item-border: #e2e8f0;
-            --transition-speed: 0.3s;
+            --input-border: #e5e7eb;
+            --active-item-bg: rgba(99, 102, 241, 0.05);
+            --active-item-border: rgba(99, 102, 241, 0.12);
+            --nav-link-hover: #f3f4f6;
+            --glass-blur: blur(24px);
+            --transition-speed: 0.25s;
         }
 
         body.dark-theme {
-            /* Dark theme */
-            --bg-color: #0b0f19;
-            --card-bg: rgba(22, 31, 48, 0.7);
-            --card-border: rgba(99, 102, 241, 0.15);
-            --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            --header-bg: rgba(15, 23, 42, 0.6);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-indigo: #6366f1;
-            --accent-teal: #14b8a6;
-            --accent-red: #f43f5e;
-            --accent-orange: #f59e0b;
-            --accent-green: #10b981;
-            --shadow-glow: 0 0 15px rgba(99, 102, 241, 0.25);
-            --shadow-glow-green: 0 0 15px rgba(16, 185, 129, 0.25);
-            --shadow-glow-red: 0 0 15px rgba(244, 63, 94, 0.25);
-            --table-header-bg: rgba(15, 23, 42, 0.8);
+            /* Dark Cyberpunk-Slate Theme */
+            --bg-color: #080b11;
+            --sidebar-bg: #0d121f;
+            --card-bg: rgba(18, 24, 38, 0.65);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-tertiary: #6b7280;
+            --accent-indigo: #818cf8;
+            --accent-indigo-glow: rgba(129, 140, 248, 0.3);
+            --accent-teal: #2dd4bf;
+            --accent-teal-glow: rgba(45, 212, 191, 0.3);
+            --accent-red: #f87171;
+            --accent-red-glow: rgba(248, 113, 113, 0.3);
+            --accent-orange: #fbbf24;
+            --accent-green: #34d399;
+            --card-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 5px 15px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            --table-header-bg: rgba(13, 18, 31, 0.9);
             --table-row-hover: rgba(255, 255, 255, 0.02);
-            --input-bg: rgba(15, 23, 42, 0.5);
+            --input-bg: rgba(13, 18, 31, 0.6);
             --input-border: rgba(255, 255, 255, 0.1);
-            --active-item-bg: rgba(15, 23, 42, 0.4);
-            --active-item-border: rgba(255, 255, 255, 0.05);
+            --active-item-bg: rgba(129, 140, 248, 0.1);
+            --active-item-border: rgba(129, 140, 248, 0.2);
+            --nav-link-hover: rgba(255, 255, 255, 0.03);
+            --glass-blur: blur(24px);
         }
 
         * {
@@ -74,176 +80,309 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.03) 0%, transparent 40%);
-            background-attachment: fixed;
-            overflow-x: hidden;
-            transition: background-color var(--transition-speed), color var(--transition-speed), background-image var(--transition-speed);
+            display: flex;
+            overflow: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
-        body.dark-theme {
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(20, 184, 166, 0.08) 0%, transparent 40%);
+        /* Ambient animated blobs */
+        .bg-blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.14;
+            pointer-events: none;
+            transition: all 1s ease;
+        }
+        body.dark-theme .bg-blob {
+            opacity: 0.08;
+            filter: blur(160px);
+        }
+        .blob-1 {
+            top: -100px;
+            left: -100px;
+            background: var(--accent-indigo);
+            animation: float-1 25s infinite alternate;
+        }
+        .blob-2 {
+            bottom: -150px;
+            right: -100px;
+            background: var(--accent-teal);
+            animation: float-2 30s infinite alternate;
+        }
+        .blob-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--accent-orange);
+            opacity: 0.05;
+            animation: float-3 35s infinite alternate;
         }
 
-        /* Webkit scrollbars */
+        @keyframes float-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(120px, 80px) scale(1.15); }
+        }
+        @keyframes float-2 {
+            0% { transform: translate(0, 0) scale(1.15); }
+            100% { transform: translate(-120px, -80px) scale(0.9); }
+        }
+        @keyframes float-3 {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(0.95); }
+            100% { transform: translate(-45%, -55%) rotate(360deg) scale(1.05); }
+        }
+
+        /* Scrollbars */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(11, 15, 25, 0.05);
-        }
-        .dark-theme ::-webkit-scrollbar-track {
-            background: rgba(11, 15, 25, 0.5);
+            background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(99, 102, 241, 0.2);
-            border-radius: 4px;
+            background: var(--text-tertiary);
+            opacity: 0.3;
+            border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(99, 102, 241, 0.5);
+            background: var(--accent-indigo);
         }
 
-        header {
-            background: var(--header-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* Layout Architecture */
+        .app-layout {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Sidebar Nav */
+        .sidebar-nav {
+            width: 270px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.75rem 1.25rem;
+            z-index: 10;
             transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
 
-        .header-title-container {
+        .brand-container {
             display: flex;
             align-items: center;
             gap: 12px;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 1.75rem;
         }
 
-        .header-logo {
+        .brand-logo {
             background: linear-gradient(135deg, var(--accent-indigo), var(--accent-teal));
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
             color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px var(--accent-indigo-glow);
         }
 
-        header h1 {
-            font-size: 1.35rem;
-            font-weight: 700;
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .header-controls {
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
         }
 
-        .theme-toggle-btn {
-            background: rgba(99, 102, 241, 0.08);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            color: var(--text-primary);
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 11px 16px;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.05rem;
-            transition: all var(--transition-speed);
-            outline: none;
-        }
-        .theme-toggle-btn:hover {
-            background: var(--accent-indigo);
-            color: white;
-            border-color: var(--accent-indigo);
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+            gap: 12px;
+            text-align: left;
+            transition: all 0.2s ease;
         }
 
-        .crawler-status-badge {
-            background: rgba(99, 102, 241, 0.05);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .nav-link:hover {
+            background: var(--nav-link-hover);
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            background: var(--active-item-bg);
+            color: var(--accent-indigo);
+            border: 1px solid var(--active-item-border);
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid var(--card-border);
+            padding-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-btn {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
+            justify-content: center;
             transition: all var(--transition-speed);
+        }
+        .sidebar-btn:hover {
+            background: var(--nav-link-hover);
+            border-color: var(--accent-indigo);
+        }
+        .sidebar-btn.danger {
+            background: rgba(239, 68, 68, 0.05);
+            border-color: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+        .sidebar-btn.danger:hover {
+            background: var(--accent-red);
+            color: white;
+            border-color: var(--accent-red);
+            box-shadow: 0 4px 12px var(--accent-red-glow);
+        }
+
+        /* Main Workspace Content */
+        .workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .workspace-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
+
+        .workspace-title h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+
+        /* Tab Management */
+        .tab-pane {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Glassmorphism Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.25);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.25rem;
             color: var(--text-primary);
         }
-
-        .crawler-status-badge.running {
-            border-color: var(--accent-green);
-            background: rgba(16, 185, 129, 0.08);
-            color: var(--accent-green);
+        .card-title i {
+            color: var(--accent-indigo);
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-secondary);
+        /* Dashboard Overview Styles */
+        .db-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 1200px) {
+            .db-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .running .status-dot {
-            background: var(--accent-green);
-            animation: pulse-glow 1.5s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
-            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.9); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-
-        /* Stats Grid */
+        /* Stats Grid Dashboard */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
             margin-bottom: 1.5rem;
         }
 
         .stat-card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.15rem;
+            border-radius: 18px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             gap: 6px;
+            box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all var(--transition-speed) ease;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
         }
 
-        .stat-card::before {
+        .stat-card::after {
             content: '';
             position: absolute;
             top: 0;
@@ -251,98 +390,109 @@
             width: 4px;
             height: 100%;
             background: var(--accent-indigo);
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.25);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.06);
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 30px var(--accent-indigo-glow);
         }
-        body.dark-theme .stat-card:hover {
-            box-shadow: var(--shadow-glow);
-        }
+        .stat-card.success:after { background: var(--accent-green); }
+        .stat-card.crawling:after { background: var(--accent-indigo); }
+        .stat-card.failed:after { background: var(--accent-red); }
+        .stat-card.pending:after { background: var(--accent-orange); }
+        .stat-card.emails:after { background: var(--accent-teal); }
+        .stat-card.phones:after { background: var(--accent-teal); }
 
-        .stat-card.done::before { background: var(--accent-green); }
-        .stat-card.crawling::before { background: var(--accent-indigo); }
-        .stat-card.failed::before { background: var(--accent-red); }
-        .stat-card.pending::before { background: var(--accent-orange); }
-        .stat-card.emails::before { background: var(--accent-teal); }
-        .stat-card.phones::before { background: var(--accent-teal); }
+        .stat-card.success:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.08); }
+        .stat-card.failed:hover { box-shadow: 0 12px 30px var(--accent-red-glow); }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .stat-value {
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--text-primary);
+            line-height: 1;
+            margin: 4px 0;
         }
 
-        .stat-meta {
-            font-size: 0.75rem;
+        .stat-desc {
+            font-size: 0.74rem;
+            color: var(--text-tertiary);
+        }
+
+        /* SVG Circular Progress Ring */
+        .progress-ring-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 1.75rem;
+        }
+
+        .progress-ring-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-ring-bg {
+            fill: transparent;
+            stroke: var(--input-border);
+            stroke-width: 8;
+        }
+
+        .progress-ring-bar {
+            fill: transparent;
+            stroke: url(#gradient-progress);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-ring-text {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .progress-ring-text .pct {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .progress-ring-text .lbl {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: var(--text-secondary);
-        }
-
-        /* Layout Grid */
-        .layout-grid {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 1024px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            box-shadow: var(--card-shadow);
-            transition: background-color var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        .card-header {
-            margin-bottom: 1.15rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card h2 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-primary);
-        }
-
-        .card h2 i {
-            color: var(--accent-indigo);
+            margin-top: 4px;
+            font-weight: 700;
         }
 
         /* Controls Panel */
-        .controls-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .control-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .btn {
-            width: 100%;
-            padding: 11px 20px;
+            padding: 11px 18px;
             border-radius: 12px;
             font-family: inherit;
             font-size: 0.85rem;
@@ -353,95 +503,134 @@
             justify-content: center;
             gap: 8px;
             border: none;
-            transition: all var(--transition-speed) ease;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-indigo), rgba(79, 70, 229, 0.9));
+            background: linear-gradient(135deg, var(--accent-indigo), rgba(99, 102, 241, 0.85));
             color: white;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 4px 15px var(--accent-indigo-glow);
         }
         .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
             filter: brightness(1.05);
-            transform: scale(1.01);
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, var(--accent-red), rgba(225, 29, 72, 0.9));
+            background: linear-gradient(135deg, var(--accent-red), rgba(239, 68, 68, 0.85));
             color: white;
+            box-shadow: 0 4px 15px var(--accent-red-glow);
         }
         .btn-danger:hover {
-            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.2);
-            transform: scale(1.01);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+            filter: brightness(1.05);
         }
 
         .btn-secondary {
-            background: rgba(99, 102, 241, 0.06);
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
             color: var(--text-primary);
-            border: 1px solid rgba(99, 102, 241, 0.15);
         }
         .btn-secondary:hover {
-            background: rgba(99, 102, 241, 0.12);
-            border-color: rgba(99, 102, 241, 0.3);
+            border-color: var(--accent-indigo);
+            background: var(--nav-link-hover);
         }
 
         .btn-accent {
-            background: linear-gradient(135deg, var(--accent-teal), rgba(13, 148, 136, 0.9));
+            background: linear-gradient(135deg, var(--accent-teal), rgba(20, 184, 166, 0.85));
             color: white;
-            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 4px 15px var(--accent-teal-glow);
         }
         .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
             filter: brightness(1.05);
-            transform: scale(1.01);
         }
 
+        /* Inputs & Selects */
+        .search-input {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.86rem;
+            outline: none;
+            transition: all var(--transition-speed);
+        }
+        .search-input:focus {
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 0 3px var(--accent-indigo-glow);
+        }
+
+        .select-filter {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.84rem;
+            outline: none;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+        .select-filter:focus {
+            border-color: var(--accent-indigo);
+        }
+
+        /* Slider Styles */
         .slider-container {
-            margin-top: 1rem;
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-
         .slider-label {
             display: flex;
             justify-content: space-between;
             font-size: 0.8rem;
             color: var(--text-secondary);
+            font-weight: 600;
         }
-
         .slider {
             -webkit-appearance: none;
             width: 100%;
             height: 6px;
             border-radius: 3px;
-            background: rgba(99, 102, 241, 0.15);
+            background: var(--input-border);
             outline: none;
         }
-
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: var(--accent-indigo);
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 2px 8px var(--accent-indigo-glow);
+            transition: transform 0.1s;
+        }
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
         }
 
-        /* Active Crawls */
+        /* Active Crawling Items list */
         .active-list {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            max-height: 250px;
+            max-height: 230px;
             overflow-y: auto;
             padding-right: 4px;
         }
-
         .active-item {
-            background: var(--active-item-bg);
-            border: 1px solid var(--active-item-border);
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
             border-radius: 10px;
             padding: 9px 12px;
             font-size: 0.78rem;
@@ -450,28 +639,14 @@
             gap: 8px;
             word-break: break-all;
             color: var(--text-secondary);
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
-
         .active-item i {
             color: var(--accent-teal);
-            animation: spin 2s linear infinite;
+            animation: spin 1.8s linear infinite;
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        .no-active {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 1.5rem 0;
-            font-style: italic;
-        }
-
-        /* Data Explorer */
-        .explorer-header {
+        /* Explorer Tab Styles */
+        .explorer-controls {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
@@ -479,123 +654,89 @@
             justify-content: space-between;
             margin-bottom: 1.25rem;
         }
-
-        .search-container {
+        .search-box {
             position: relative;
             flex: 1;
-            min-width: 250px;
+            min-width: 300px;
         }
-
-        .search-container i {
+        .search-box i {
             position: absolute;
-            left: 14px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
+            color: var(--text-tertiary);
         }
-
-        .search-input {
+        .search-box .search-input {
             width: 100%;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            padding: 9px 16px 9px 40px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            color: var(--text-primary);
-            outline: none;
-            transition: all var(--transition-speed);
+            padding-left: 44px;
         }
 
-        .search-input:focus {
-            border-color: var(--accent-indigo);
-            box-shadow: 0 0 8px rgba(79, 70, 229, 0.12);
-        }
-
-        .filter-group {
+        .filter-actions {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        .select-filter {
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            color: var(--text-primary);
-            padding: 9px 16px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.82rem;
-            outline: none;
-            cursor: pointer;
-            transition: all var(--transition-speed);
-        }
-
-        .select-filter:focus {
-            border-color: var(--accent-indigo);
-        }
-
-        /* Table CSS */
-        .table-responsive {
+        /* Table Styling */
+        .table-container {
             overflow-x: auto;
-            border-radius: 12px;
-            border: 1px solid var(--active-item-border);
+            border-radius: 16px;
+            border: 1px solid var(--input-border);
             background: var(--card-bg);
-            min-height: 300px;
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+            min-height: 350px;
+            box-shadow: var(--card-shadow);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             text-align: left;
         }
 
         th {
             background: var(--table-header-bg);
             color: var(--text-primary);
-            font-weight: 600;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--active-item-border);
+            font-weight: 700;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--input-border);
             cursor: pointer;
             user-select: none;
-            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-
         th:hover {
             color: var(--accent-indigo);
+            background: var(--nav-link-hover);
         }
-
         th i {
-            margin-left: 4px;
+            margin-left: 6px;
             font-size: 0.72rem;
         }
 
         td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--active-item-border);
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--input-border);
             color: var(--text-secondary);
             vertical-align: middle;
-            transition: border-color var(--transition-speed);
+            transition: background-color var(--transition-speed);
         }
-
         tr:last-child td {
             border-bottom: none;
         }
-
         tr:hover td {
             background: var(--table-row-hover);
             color: var(--text-primary);
         }
 
         .company-name {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
+            font-size: 0.88rem;
         }
 
-        .location-text {
+        .location-label {
             font-size: 0.78rem;
+            font-weight: 500;
         }
 
         .website-link {
@@ -604,113 +745,202 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-weight: 500;
+            font-weight: 600;
+            transition: color var(--transition-speed);
         }
         .website-link:hover {
+            color: var(--accent-indigo);
             text-decoration: underline;
         }
 
-        .contact-info-list {
+        .contact-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
-
-        .contact-item {
+        .contact-row {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 0.78rem;
         }
-
-        .contact-item i {
+        .contact-row i {
+            color: var(--text-tertiary);
             width: 14px;
-            color: var(--text-secondary);
         }
-
-        .tag-badge {
-            font-size: 0.65rem;
-            padding: 1px 5px;
+        .tag {
+            font-size: 0.62rem;
+            padding: 2px 6px;
             border-radius: 4px;
             background: rgba(99, 102, 241, 0.08);
             color: var(--accent-indigo);
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
+        /* Custom pill status styles */
         .status-pill {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
             font-size: 0.72rem;
-            font-weight: 600;
-            text-transform: capitalize;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            border-width: 1px;
+            border-style: solid;
         }
-
-        .status-pill.done { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.2); }
-        .status-pill.pending { background: rgba(245, 158, 11, 0.1); color: var(--accent-orange); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .status-pill.crawling, .status-pill.resolving { background: rgba(99, 102, 241, 0.1); color: var(--accent-indigo); border: 1px solid rgba(99, 102, 241, 0.2); }
-        .status-pill.failed { background: rgba(225, 29, 72, 0.1); color: var(--accent-red); border: 1px solid rgba(225, 29, 72, 0.2); }
-        .status-pill.no_website { background: rgba(100, 116, 139, 0.1); color: var(--text-secondary); border: 1px solid rgba(100, 116, 139, 0.2); }
+        .status-pill.done { background: rgba(16, 185, 129, 0.08); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.15); }
+        .status-pill.pending { background: rgba(245, 158, 11, 0.08); color: var(--accent-orange); border-color: rgba(245, 158, 11, 0.15); }
+        .status-pill.crawling, .status-pill.resolving { background: rgba(99, 102, 241, 0.08); color: var(--accent-indigo); border-color: rgba(99, 102, 241, 0.15); }
+        .status-pill.failed { background: rgba(239, 68, 68, 0.08); color: var(--accent-red); border-color: rgba(239, 68, 68, 0.15); }
+        .status-pill.no_website { background: rgba(156, 163, 175, 0.08); color: var(--text-secondary); border-color: rgba(156, 163, 175, 0.15); }
 
         .error-btn {
             background: none;
             border: none;
             color: var(--accent-red);
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-decoration: underline;
             padding: 0;
-            margin-top: 4px;
+            margin-top: 3px;
             font-family: inherit;
+            font-weight: 600;
         }
 
-        /* Pagination */
-        .pagination-container {
+        /* Pagination Styles */
+        .pagination {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-            gap: 12px;
+            margin-top: 1.25rem;
         }
-
-        .page-info {
-            font-size: 0.78rem;
+        .pagination-label {
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
-
-        .page-controls {
+        .pagination-buttons {
             display: flex;
             gap: 6px;
         }
-
-        .page-btn {
+        .pagination-btn {
             background: var(--card-bg);
             border: 1px solid var(--input-border);
             color: var(--text-primary);
-            padding: 7px 12px;
+            padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.78rem;
-            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
             transition: all var(--transition-speed);
         }
-
-        .page-btn:hover:not(:disabled) {
+        .pagination-btn:hover:not(:disabled) {
             background: var(--accent-indigo);
             color: white;
             border-color: var(--accent-indigo);
         }
-
-        .page-btn:disabled {
+        .pagination-btn:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
 
-        /* Modal styling */
+        /* Campaigner Tab Styles */
+        .campaigner-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 1100px) {
+            .campaigner-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Template tag inserts */
+        .placeholder-tag {
+            background: var(--input-border);
+            border: 1px solid var(--input-border);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-right: 6px;
+            margin-top: 6px;
+            transition: all var(--transition-speed);
+        }
+        .placeholder-tag:hover {
+            background: var(--active-item-bg);
+            border-color: var(--accent-indigo);
+            color: var(--accent-indigo);
+        }
+
+        .textarea-editor {
+            width: 100%;
+            height: 250px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-primary);
+            padding: 14px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            transition: all var(--transition-speed);
+        }
+        .textarea-editor:focus {
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 0 3px var(--accent-indigo-glow);
+        }
+
+        /* Campaign Status Banner */
+        .campaign-banner {
+            background: var(--active-item-bg);
+            border: 1px solid var(--active-item-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .campaign-banner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+        .campaign-progress-track {
+            height: 8px;
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .campaign-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-indigo), var(--accent-teal));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .campaign-banner-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -720,403 +950,483 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(15, 23, 42, 0.3);
-            backdrop-filter: blur(6px);
+            background-color: rgba(15, 23, 42, 0.2);
+            backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
         }
-
         .modal.open {
             display: flex;
         }
-
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            padding: 1.75rem;
-            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+            border-radius: 24px;
             width: 90%;
-            max-width: 480px;
+            max-width: 500px;
             position: relative;
-            animation: modal-anim 0.25s ease;
+            animation: modal-zoom 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        @keyframes modal-anim {
-            from { transform: scale(0.96); opacity: 0; }
+        @keyframes modal-zoom {
+            from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
         .close-modal {
             position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 1.15rem;
+            right: 24px;
+            top: 24px;
+            font-size: 1.3rem;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: var(--text-tertiary);
             transition: color var(--transition-speed);
         }
         .close-modal:hover {
             color: var(--text-primary);
         }
 
-        .modal-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.85rem;
+        .modal-error-title {
+            font-size: 1.2rem;
+            font-weight: 800;
             color: var(--accent-red);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .modal-text {
-            font-size: 0.85rem;
+        .modal-error-body {
+            font-size: 0.88rem;
             line-height: 1.5;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            padding: 14px;
+            border-radius: 12px;
+            word-break: break-all;
             color: var(--text-primary);
-            background: var(--bg-color);
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-            word-break: break-word;
-        }
-
-        .no-data {
-            text-align: center;
-            color: var(--text-secondary);
-            padding: 3rem 0;
-            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-title-container">
-            <div class="header-logo">
-                <i class="fa-solid fa-compass"></i>
-            </div>
-            <div>
-                <h1>Industry Leads Discoverer</h1>
-            </div>
-        </div>
+    <!-- Ambient Blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <!-- App layout -->
+    <div class="app-layout">
         
-        <div class="header-controls">
-            <button id="btn-campaign-modal" class="theme-toggle-btn" title="Open Email Campaigner" style="width: auto; border-radius: 12px; padding: 0 14px; gap: 6px;">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Campaigner</span>
-            </button>
-            <button id="btn-theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-            <div id="crawler-status" class="crawler-status-badge">
-                <span class="status-dot"></span>
-                <span id="crawler-status-text">Idle</span>
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar-nav">
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+                <div class="brand-name">LeadDiscoverer</div>
             </div>
-        </div>
-    </header>
+            
+            <nav class="nav-links">
+                <button class="nav-link active" data-tab="tab-dashboard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-link" data-tab="tab-explorer">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Leads Explorer</span>
+                </button>
+                <button class="nav-link" data-tab="tab-campaigner">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Email Campaigner</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="btn-theme-toggle" class="sidebar-btn" title="Toggle Light/Dark Theme">
+                    <i class="fa-solid fa-moon"></i>
+                    <span id="theme-btn-label">Dark Theme</span>
+                </button>
+                <button id="btn-reset" class="sidebar-btn danger" title="Clear and resets database">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Reset Database</span>
+                </button>
+            </div>
+        </aside>
 
-    <div class="container">
-        <!-- Stats Row -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-label">Total Leads</span>
-                <span id="stat-total" class="stat-value">-</span>
-                <span class="stat-meta">In Database</span>
-            </div>
-            <div class="stat-card done">
-                <span class="stat-label">Completed</span>
-                <span id="stat-done" class="stat-value">-</span>
-                <span id="stat-success-rate" class="stat-meta">0% Success</span>
-            </div>
-            <div class="stat-card crawling">
-                <span class="stat-label">Active / Crawling</span>
-                <span id="stat-crawling" class="stat-value">-</span>
-                <span class="stat-meta">Workers in progress</span>
-            </div>
-            <div class="stat-card pending">
-                <span class="stat-label">Remaining</span>
-                <span id="stat-pending" class="stat-value">-</span>
-                <span id="stat-eta" class="stat-meta">ETA: -</span>
-            </div>
-            <div class="stat-card failed">
-                <span class="stat-label">Failed / No Site</span>
-                <span id="stat-failed" class="stat-value">-</span>
-                <span class="stat-meta">Errors logged</span>
-            </div>
-            <div class="stat-card emails">
-                <span class="stat-label">Emails Discovered</span>
-                <span id="stat-emails" class="stat-value">-</span>
-                <span class="stat-meta">Validated contact addresses</span>
-            </div>
-            <div class="stat-card phones">
-                <span class="stat-label">Phones Discovered</span>
-                <span id="stat-phones" class="stat-value">-</span>
-                <span class="stat-meta">Validated phone lines</span>
-            </div>
-        </div>
-
-        <!-- Main Body -->
-        <div class="layout-grid">
-            <!-- Left: Sidebar Controls -->
-            <div>
-                <!-- Seeder Card -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fa-solid fa-database"></i> Setup Data</h2>
-                    </div>
-                    <div class="controls-panel">
-                        <button id="btn-seed" class="btn btn-accent">
-                            <i class="fa-solid fa-seedling"></i> Seed Indian Sectors
-                        </button>
-                        <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4;">
-                            Loads ~120 well-known facilities across the 6 requested sectors: Industrial Manufacturing, Warehousing/Cold Storage, Educational Institutes, Factories, Offices, and Hospitals in India.
-                        </p>
+        <!-- Main workspace content -->
+        <div class="workspace">
+            
+            <!-- Header -->
+            <header class="workspace-header">
+                <div class="workspace-title">
+                    <h2 id="workspace-view-title">Dashboard Overview</h2>
+                </div>
+                <div class="header-status">
+                    <div id="crawler-status" class="crawler-status-badge">
+                        <span class="status-dot"></span>
+                        <span id="crawler-status-text">Idle</span>
                     </div>
                 </div>
+            </header>
 
-                <!-- Crawler Control Card -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fa-solid fa-sliders"></i> Controller</h2>
-                    </div>
-                    <div class="controls-panel">
-                        <button id="btn-start" class="btn btn-primary">
-                            <i class="fa-solid fa-play"></i> Start Discovery Scraper
-                        </button>
-                        <button id="btn-stop" class="btn btn-danger" style="display: none;">
-                            <i class="fa-solid fa-stop"></i> Stop Discovery Scraper
-                        </button>
-                        <button id="btn-reset" class="btn btn-secondary">
-                            <i class="fa-solid fa-rotate-left"></i> Reset Database
-                        </button>
-                        
-                        <div class="slider-container">
-                            <div class="slider-label">
-                                <span>Concurrency (Workers)</span>
-                                <span id="worker-count-val">30</span>
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 1: DASHBOARD -->
+            <!-- ------------------------------------------------------------- -->
+            <section id="tab-dashboard" class="tab-pane active">
+                
+                <div class="db-grid">
+                    
+                    <!-- Left column: crawler stats -->
+                    <div>
+                        <!-- Stats Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-label">Total Leads</span>
+                                <span id="stat-total" class="stat-value">-</span>
+                                <span class="stat-desc">In Database</span>
                             </div>
-                            <input type="range" min="1" max="50" value="30" class="slider" id="worker-count-slider">
+                            <div class="stat-card success">
+                                <span class="stat-label">Completed</span>
+                                <span id="stat-done" class="stat-value">-</span>
+                                <span id="stat-success-rate" class="stat-desc">0.0% Success Rate</span>
+                            </div>
+                            <div class="stat-card crawling">
+                                <span class="stat-label">Active / Crawling</span>
+                                <span id="stat-crawling" class="stat-value">-</span>
+                                <span class="stat-desc">Async Workers in progress</span>
+                            </div>
+                            <div class="stat-card pending">
+                                <span class="stat-label">Remaining</span>
+                                <span id="stat-pending" class="stat-value">-</span>
+                                <span id="stat-eta" class="stat-desc">ETA: --:--</span>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card emails">
+                                <span class="stat-label">Emails Discovered</span>
+                                <span id="stat-emails" class="stat-value">-</span>
+                                <span class="stat-desc">Valid email addresses</span>
+                            </div>
+                            <div class="stat-card phones">
+                                <span class="stat-label">Phones Discovered</span>
+                                <span id="stat-phones" class="stat-value">-</span>
+                                <span class="stat-desc">Valid telephone lines</span>
+                            </div>
+                            <div class="stat-card failed">
+                                <span class="stat-label">Failed / No Site</span>
+                                <span id="stat-failed" class="stat-value">-</span>
+                                <span class="stat-desc">Resolving/crawl failures</span>
+                            </div>
+                        </div>
+
+                        <!-- Scraper Controller -->
+                        <div class="card">
+                            <div class="card-title">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>Scraper Run Manager</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: center;">
+                                <div class="control-btns">
+                                    <button id="btn-start" class="btn btn-primary">
+                                        <i class="fa-solid fa-play"></i> Start Scraper
+                                    </button>
+                                    <button id="btn-stop" class="btn btn-danger" style="display: none;">
+                                        <i class="fa-solid fa-stop"></i> Stop Scraper
+                                    </button>
+                                    <button id="btn-seed" class="btn btn-accent">
+                                        <i class="fa-solid fa-seedling"></i> Seed Indian Sectors
+                                    </button>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-label">
+                                        <span>Concurrency (Active Workers)</span>
+                                        <span id="worker-count-val" style="color: var(--accent-indigo); font-weight: 700;">30</span>
+                                    </div>
+                                    <input type="range" min="1" max="50" value="30" class="slider" id="worker-count-slider">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right column: crawler visual gauge + active URLs -->
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <!-- Circular progress card -->
+                        <div class="card progress-ring-card">
+                            <div class="progress-ring-container">
+                                <svg width="120" height="120">
+                                    <defs>
+                                        <linearGradient id="gradient-progress" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="var(--accent-indigo)"/>
+                                            <stop offset="100%" stop-color="var(--accent-teal)"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="progress-ring-bg" cx="60" cy="60" r="50"></circle>
+                                    <!-- Circumference = 2 * PI * r = 314.159 -->
+                                    <circle class="progress-ring-bar" id="success-ring" cx="60" cy="60" r="50" stroke-dasharray="314.159" stroke-dashoffset="314.159"></circle>
+                                </svg>
+                                <div class="progress-ring-text">
+                                    <span class="pct" id="ring-pct">0%</span>
+                                    <span class="lbl">Crawl Success</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Pipeline Yield</div>
+                                <p style="font-size: 0.76rem; color: var(--text-secondary); max-width: 140px; line-height: 1.4;">
+                                    Ratio of successfully crawled domains with resolved contacts.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Active URLs list -->
+                        <div class="card" style="flex: 1; display: flex; flex-direction: column; margin-bottom: 0;">
+                            <div class="card-title">
+                                <i class="fa-solid fa-globe"></i>
+                                <span>Active Crawler Targets</span>
+                            </div>
+                            <div id="active-urls-list" class="active-list" style="flex: 1;">
+                                <div style="font-size: 0.78rem; color: var(--text-tertiary); text-align: center; padding: 2rem 0; font-style: italic;">
+                                    Crawler is currently idle.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 2: LEADS EXPLORER -->
+            <!-- ------------------------------------------------------------- -->
+            <section id="tab-explorer" class="tab-pane">
+                
+                <div class="card">
+                    <!-- Table Search / Filter toolbar -->
+                    <div class="explorer-controls">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="search-input" class="search-input" placeholder="Search by lead name, location, email, phone...">
+                        </div>
+                        <div class="filter-actions">
+                            <select id="filter-source" class="select-filter">
+                                <option value="all">All Sectors</option>
+                            </select>
+                            <select id="filter-status" class="select-filter">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="resolving">Resolving</option>
+                                <option value="crawling">Crawling</option>
+                                <option value="done">Completed</option>
+                                <option value="failed">Failed</option>
+                                <option value="no_website">No Website</option>
+                            </select>
+                            <select id="filter-contact" class="select-filter">
+                                <option value="all">All Contacts</option>
+                                <option value="any_email">Has Any Email</option>
+                                <option value="general_email">Has General Email</option>
+                                <option value="hr_email">Has HR Email</option>
+                                <option value="exec_email">Has Exec Email</option>
+                                <option value="phone">Has Phone Number</option>
+                                <option value="no_contact">No Contact Info</option>
+                            </select>
+                            <button id="btn-export" class="btn btn-secondary">
+                                <i class="fa-solid fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Leads Grid -->
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-field="id">ID <i class="fa-solid fa-sort"></i></th>
+                                    <th data-field="industry_name">Lead Name <i class="fa-solid fa-sort"></i></th>
+                                    <th>Location</th>
+                                    <th>Official Website</th>
+                                    <th>Contact Information</th>
+                                    <th data-field="crawl_status">Crawl Status <i class="fa-solid fa-sort"></i></th>
+                                    <th>Mailing Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-table-body">
+                                <!-- Data injected via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div id="pagination-info" class="pagination-label">
+                            Showing 0 to 0 of 0 leads
+                        </div>
+                        <div class="pagination-buttons">
+                            <button id="btn-prev-page" class="pagination-btn" disabled><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                            <button id="btn-next-page" class="pagination-btn" disabled>Next <i class="fa-solid fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Live Crawling URLs -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2><i class="fa-solid fa-globe"></i> Active URLs</h2>
-                    </div>
-                    <div id="active-urls-list" class="active-list">
-                        <div class="no-active">No pages being crawled.</div>
-                    </div>
-                </div>
-            </div>
+            </section>
 
-            <!-- Right: Data Table Explorer -->
-            <div class="card" style="margin-bottom: 0;">
-                <div class="explorer-header">
-                    <div class="search-container">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-input" class="search-input" placeholder="Search by name, city, state, email, phone...">
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 3: EMAIL CAMPAIGNER -->
+            <!-- ------------------------------------------------------------- -->
+            <section id="tab-campaigner" class="tab-pane">
+                
+                <!-- Live campaign progress (displayed when a campaign runs or has finished) -->
+                <div id="campaign-banner" class="campaign-banner" style="display: none;">
+                    <div class="campaign-banner-header">
+                        <span id="campaign-status-label" style="color: var(--accent-indigo);">Campaign Running...</span>
+                        <span id="campaign-counts" style="font-size: 0.9rem;">0 / 0 sent</span>
                     </div>
-                    <div class="filter-group">
-                        <select id="filter-source" class="select-filter">
-                            <option value="all">All Sectors</option>
-                        </select>
-                        <select id="filter-status" class="select-filter">
-                            <option value="all">All Statuses</option>
-                            <option value="pending">Pending</option>
-                            <option value="resolving">Resolving</option>
-                            <option value="crawling">Crawling</option>
-                            <option value="done">Completed</option>
-                            <option value="failed">Failed</option>
-                            <option value="no_website">No Website</option>
-                        </select>
-                        <select id="filter-contact" class="select-filter">
-                            <option value="all">All Contacts</option>
-                            <option value="any_email">Has Any Email</option>
-                            <option value="general_email">Has General Email</option>
-                            <option value="hr_email">Has HR Email</option>
-                            <option value="exec_email">Has Exec Email</option>
-                            <option value="phone">Has Phone Number</option>
-                            <option value="no_contact">No Contact Info</option>
-                        </select>
-                        <button id="btn-export" class="btn btn-secondary" style="width: auto; padding: 9px 16px;">
-                            <i class="fa-solid fa-download"></i> Export CSV
-                        </button>
+                    <div class="campaign-progress-track">
+                        <div id="campaign-progress-bar" class="campaign-progress-bar"></div>
+                    </div>
+                    <div class="campaign-banner-meta">
+                        <span>Current Lead: <strong id="campaign-current-company" style="color: var(--text-primary);">-</strong></span>
+                        <span id="campaign-failed-count" style="color: var(--accent-red); font-weight: 600;">Failed: 0</span>
                     </div>
                 </div>
 
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th data-field="id">ID <i class="fa-solid fa-sort"></i></th>
-                                <th data-field="industry_name">Industry Name <i class="fa-solid fa-sort"></i></th>
-                                <th>Location</th>
-                                <th>Official Website</th>
-                                <th>Discovered Contact Info</th>
-                                <th data-field="crawl_status">Crawl Status <i class="fa-solid fa-sort"></i></th>
-                                <th>Mail Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leads-table-body">
-                            <!-- Rows loaded via JavaScript -->
-                        </tbody>
-                    </table>
+                <div class="campaigner-layout">
+                    
+                    <!-- Left: SMTP Config & Targeting -->
+                    <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
+                            SMTP Credentials
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">SMTP Host</label>
+                                <input type="text" id="smtp-server" class="search-input" placeholder="smtp.gmail.com">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">SMTP Port</label>
+                                <input type="number" id="smtp-port" class="search-input" value="587">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" id="smtp-ssl" style="cursor: pointer;">
+                            <label for="smtp-ssl" style="font-size: 0.78rem; cursor: pointer; user-select: none; font-weight: 500;">Use SSL/TLS (Port 465)</label>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Sender Email Address</label>
+                            <input type="email" id="smtp-sender" class="search-input" placeholder="sender@example.com">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">App Password / Password</label>
+                            <input type="password" id="smtp-password" class="search-input" placeholder="••••••••••••••••">
+                        </div>
+
+                        <div style="font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-top: 10px;">
+                            Campaign Target
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Industry Sector</label>
+                            <select id="campaign-sector" class="select-filter" style="width: 100%;">
+                                <option value="all">All Sectors</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Target Email Department</label>
+                            <select id="campaign-email-type" class="select-filter" style="width: 100%;">
+                                <option value="any">Any Discovered Email</option>
+                                <option value="general">General (e.g. info@...)</option>
+                                <option value="hr">Human Resources (e.g. careers@...)</option>
+                                <option value="exec">Executive / Owner (e.g. ceo@...)</option>
+                            </select>
+                        </div>
+
+                        <div class="slider-container" style="margin-top: 10px;">
+                            <div class="slider-label">
+                                <span>Sending Delay</span>
+                                <span id="delay-val" style="color: var(--accent-indigo);">2.0s</span>
+                            </div>
+                            <input type="range" min="0.5" max="10" step="0.5" value="2.0" class="slider" id="delay-slider">
+                        </div>
+                    </div>
+
+                    <!-- Right: Email Template Editor -->
+                    <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
+                            Compose Campaign Template
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Email Subject</label>
+                            <input type="text" id="campaign-subject" class="search-input" placeholder="Collaboration Proposal: {company_name}">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Email Body</label>
+                            <textarea id="campaign-body" class="textarea-editor" 
+                                placeholder="Dear Team at {company_name},&#10;&#10;We recently visited your site {website} and noticed your operations in {city}, {state}. We would love to collaborate.&#10;&#10;Best regards,&#10;Partnerships Team"></textarea>
+                        </div>
+
+                        <!-- Tag helpers -->
+                        <div>
+                            <span style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 600; display: block; margin-bottom: 2px;">Insert Placeholder Variables:</span>
+                            <button class="placeholder-tag" onclick="insertTag('{company_name}')"><i class="fa-solid fa-building"></i> Company Name</button>
+                            <button class="placeholder-tag" onclick="insertTag('{city}')"><i class="fa-solid fa-map-pin"></i> City</button>
+                            <button class="placeholder-tag" onclick="insertTag('{state}')"><i class="fa-solid fa-map-location-dot"></i> State</button>
+                            <button class="placeholder-tag" onclick="insertTag('{website}')"><i class="fa-solid fa-globe"></i> Website</button>
+                            <button class="placeholder-tag" onclick="insertTag('{email}')"><i class="fa-solid fa-envelope"></i> Email</button>
+                        </div>
+
+                        <!-- Campaign actions -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 15px; border-top: 1px solid var(--card-border); padding-top: 1.5rem; align-items: flex-end;">
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <label style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;">Verification Target Email</label>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="email" id="test-recipient" class="search-input" style="flex: 1; padding: 8px 12px; font-size: 0.8rem;" placeholder="test@receiver.com">
+                                    <button id="btn-test-email" class="btn btn-secondary" style="padding: 0 14px;">
+                                        <i class="fa-solid fa-flask"></i> Send Test
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <button id="btn-start-campaign" class="btn btn-primary" style="width: 100%; height: 42px; font-size: 0.9rem;">
+                                    <i class="fa-solid fa-rocket"></i> Launch Campaign
+                                </button>
+                                <button id="btn-stop-campaign" class="btn btn-danger" style="width: 100%; height: 42px; font-size: 0.9rem; display: none;">
+                                    <i class="fa-solid fa-ban"></i> Terminate Campaign
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="pagination-container">
-                    <div id="pagination-info" class="page-info">
-                        Showing 0 to 0 of 0 leads
-                    </div>
-                    <div class="page-controls">
-                        <button id="btn-prev-page" class="page-btn" disabled><i class="fa-solid fa-angle-left"></i> Prev</button>
-                        <button id="btn-next-page" class="page-btn" disabled>Next <i class="fa-solid fa-angle-right"></i></button>
-                    </div>
-                </div>
-            </div>
+            </section>
+
         </div>
     </div>
 
-    <!-- Error Modal -->
+    <!-- Error Popup Modal -->
     <div id="error-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" id="close-modal-btn">&times;</span>
-            <div class="modal-title">Crawl Error Details</div>
-            <div id="modal-error-content" class="modal-text">
+            <div class="modal-error-title">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Crawl Error Log</span>
+            </div>
+            <div id="modal-error-content" class="modal-error-body">
                 Some error message will go here...
             </div>
         </div>
     </div>
 
-    <!-- Campaigner Modal -->
-    <div id="campaign-modal" class="modal">
-        <div class="modal-content" style="max-width: 900px; display: flex; flex-direction: column; gap: 16px;">
-            <span class="close-modal" id="close-campaign-btn">&times;</span>
-            <div class="modal-title" style="color: var(--accent-indigo); display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Email Campaign Manager</span>
-            </div>
-            
-            <div class="campaign-grid" style="display: grid; grid-template-columns: 360px 1fr; gap: 24px;">
-                <!-- Left: Configuration & Target -->
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
-                        SMTP Configuration
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px;">
-                        <div style="display: flex; flex-direction: column; gap: 4px;">
-                            <label style="font-size: 0.72rem; color: var(--text-secondary);">SMTP Server</label>
-                            <input type="text" id="smtp-server" class="search-input" style="padding: 7px 10px;" placeholder="smtp.gmail.com">
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 4px;">
-                            <label style="font-size: 0.72rem; color: var(--text-secondary);">SMTP Port</label>
-                            <input type="number" id="smtp-port" class="search-input" style="padding: 7px 10px;" value="587">
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                        <input type="checkbox" id="smtp-ssl" style="cursor: pointer;">
-                        <label for="smtp-ssl" style="font-size: 0.78rem; cursor: pointer; user-select: none;">Use SSL/TLS (Port 465)</label>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Sender Email</label>
-                        <input type="email" id="smtp-sender" class="search-input" style="padding: 7px 10px;" placeholder="sender@example.com">
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">App Password / Password</label>
-                        <input type="password" id="smtp-password" class="search-input" style="padding: 7px 10px;" placeholder="••••••••••••••••">
-                    </div>
-
-                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-top: 10px;">
-                        Targeting
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Target Sector</label>
-                        <select id="campaign-sector" class="select-filter" style="width: 100%; padding: 7px 10px;">
-                            <option value="all">All Sectors</option>
-                        </select>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Target Email Role</label>
-                        <select id="campaign-email-type" class="select-filter" style="width: 100%; padding: 7px 10px;">
-                            <option value="any">Any Discovered Email</option>
-                            <option value="general">General (e.g. info@...)</option>
-                            <option value="hr">Human Resources (e.g. careers@...)</option>
-                            <option value="exec">Executive (e.g. ceo@...)</option>
-                        </select>
-                    </div>
-
-                    <div class="slider-container" style="margin-top: 6px;">
-                        <div class="slider-label" style="font-size: 0.72rem;">
-                            <span>Sending Delay (Seconds)</span>
-                            <span id="delay-val">2.0</span>
-                        </div>
-                        <input type="range" min="0.5" max="10" step="0.5" value="2.0" class="slider" id="delay-slider">
-                    </div>
-                </div>
-
-                <!-- Right: Template & Campaigns -->
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
-                        Email Template
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Email Subject</label>
-                        <input type="text" id="campaign-subject" class="search-input" style="padding: 7px 10px;" placeholder="Business Inquiry: {company_name}">
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 4px;">
-                        <label style="font-size: 0.72rem; color: var(--text-secondary);">
-                            Email Body (Placeholders: {company_name}, {city}, {state}, {website}, {email})
-                        </label>
-                        <textarea id="campaign-body" class="search-input" style="padding: 10px; height: 140px; font-family: inherit; font-size: 0.82rem; resize: none;" 
-                            placeholder="Dear Team at {company_name},&#10;&#10;We noticed your operations in {city}, {state} and would love to connect.&#10;&#10;Best regards,&#10;Sales Team"></textarea>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-top: 10px; align-items: flex-end;">
-                        <div style="display: flex; flex-direction: column; gap: 4px;">
-                            <label style="font-size: 0.72rem; color: var(--text-secondary);">Test Recipient Email</label>
-                            <input type="email" id="test-recipient" class="search-input" style="padding: 7px 10px; font-size: 0.78rem;" placeholder="test-receiver@example.com">
-                            <button id="btn-test-email" class="btn btn-secondary" style="padding: 7px 10px; font-size: 0.78rem; width: 100%;">
-                                <i class="fa-solid fa-paper-plane"></i> Send Test Email
-                            </button>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 4px; width: 100%;">
-                            <button id="btn-start-campaign" class="btn btn-primary" style="width: 100%; height: 38px;">
-                                <i class="fa-solid fa-play"></i> Start Campaign
-                            </button>
-                            <button id="btn-stop-campaign" class="btn btn-danger" style="width: 100%; height: 38px; display: none;">
-                                <i class="fa-solid fa-stop"></i> Stop Campaign
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Live Campaign Stats -->
-                    <div id="campaign-stats-container" style="display: none; background: var(--active-item-bg); border: 1px solid var(--active-item-border); border-radius: 12px; padding: 12px; margin-top: 10px; flex-direction: column; gap: 8px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
-                            <span id="campaign-status-label" style="color: var(--accent-indigo);">Campaign Running...</span>
-                            <span id="campaign-counts">0 / 0 sent</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(99, 102, 241, 0.15); border-radius: 3px; overflow: hidden; position: relative;">
-                            <div id="campaign-progress-bar" style="width: 0%; height: 100%; background: var(--accent-indigo); transition: width 0.3s;"></div>
-                        </div>
-                        <div style="font-size: 0.72rem; color: var(--text-secondary); display: flex; justify-content: space-between;">
-                            <span>Current: <strong id="campaign-current-company" style="color: var(--text-primary);">-</strong></span>
-                            <span id="campaign-failed-count" style="color: var(--accent-red);">Failed: 0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // State management
+        // State variables
         let currentPage = 1;
         const limit = 25;
         let totalRecords = 0;
@@ -1125,8 +1435,9 @@
         let isRunning = false;
         let statsInterval = null;
         let tableDebounceTimeout = null;
+        let currentTabId = "tab-dashboard";
 
-        // Elements
+        // Main Tab DOM Elements
         const leadsTableBody = document.getElementById('leads-table-body');
         const searchInput = document.getElementById('search-input');
         const filterStatus = document.getElementById('filter-status');
@@ -1135,67 +1446,89 @@
         const paginationInfo = document.getElementById('pagination-info');
         const btnPrevPage = document.getElementById('btn-prev-page');
         const btnNextPage = document.getElementById('btn-next-page');
-        
-        // Buttons
+
+        // Scraper Action Buttons
         const btnStart = document.getElementById('btn-start');
         const btnStop = document.getElementById('btn-stop');
         const btnReset = document.getElementById('btn-reset');
         const btnSeed = document.getElementById('btn-seed');
         const btnExport = document.getElementById('btn-export');
         const btnThemeToggle = document.getElementById('btn-theme-toggle');
-        const themeIcon = btnThemeToggle.querySelector('i');
+        const themeBtnLabel = document.getElementById('theme-btn-label');
         
-        // Slider
+        // Settings Concurrency elements
         const workerSlider = document.getElementById('worker-count-slider');
         const workerVal = document.getElementById('worker-count-val');
 
-        // Campaign Manager Elements
-        const campaignModal = document.getElementById('campaign-modal');
-        const btnCampaignModal = document.getElementById('btn-campaign-modal');
-        const closeCampaignBtn = document.getElementById('close-campaign-btn');
+        // Email Campaigner Controls
         const btnStartCampaign = document.getElementById('btn-start-campaign');
         const btnStopCampaign = document.getElementById('btn-stop-campaign');
         const btnTestEmail = document.getElementById('btn-test-email');
         const delaySlider = document.getElementById('delay-slider');
         const delayVal = document.getElementById('delay-val');
 
-        // Modal
+        // Modals
         const errorModal = document.getElementById('error-modal');
         const modalErrorContent = document.getElementById('modal-error-content');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
-        // Theme check
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            themeIcon.className = 'fa-solid fa-sun';
-        } else {
-            document.body.classList.remove('dark-theme');
-            themeIcon.className = 'fa-solid fa-moon';
-        }
-
-        // Initial setup
+        // Initial setup on load
         window.addEventListener('DOMContentLoaded', () => {
             loadStats();
             loadIndustries();
             
-            // Poll statistics every 1.5 seconds to keep dashboard alive
+            // Poll statistics every 1.5 seconds
             statsInterval = setInterval(loadStats, 1500);
 
-            // Theme toggle
+            // Set up Theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                btnThemeToggle.querySelector('i').className = 'fa-solid fa-sun';
+                themeBtnLabel.innerText = "Light Theme";
+            } else {
+                document.body.classList.remove('dark-theme');
+                btnThemeToggle.querySelector('i').className = 'fa-solid fa-moon';
+                themeBtnLabel.innerText = "Dark Theme";
+            }
+
+            // Theme Toggle Button
             btnThemeToggle.addEventListener('click', () => {
                 if (document.body.classList.contains('dark-theme')) {
                     document.body.classList.remove('dark-theme');
-                    themeIcon.className = 'fa-solid fa-moon';
+                    btnThemeToggle.querySelector('i').className = 'fa-solid fa-moon';
+                    themeBtnLabel.innerText = "Dark Theme";
                     localStorage.setItem('theme', 'light');
                 } else {
                     document.body.classList.add('dark-theme');
-                    themeIcon.className = 'fa-solid fa-sun';
+                    btnThemeToggle.querySelector('i').className = 'fa-solid fa-sun';
+                    themeBtnLabel.innerText = "Light Theme";
                     localStorage.setItem('theme', 'dark');
                 }
             });
 
-            // Event Listeners for Filtering & Paging
+            // Tab Navigation Event Handlers
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+                    link.classList.add('active');
+                    const tabId = link.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Update header title
+                    const titleMap = {
+                        "tab-dashboard": "Dashboard Overview",
+                        "tab-explorer": "Leads Explorer Database",
+                        "tab-campaigner": "Email Campaign Manager"
+                    };
+                    document.getElementById('workspace-view-title').innerText = titleMap[tabId] || "Discoverer Overview";
+                    currentTabId = tabId;
+                });
+            });
+
+            // Event Listeners for Filters
             searchInput.addEventListener('input', () => {
                 clearTimeout(tableDebounceTimeout);
                 tableDebounceTimeout = setTimeout(() => {
@@ -1256,7 +1589,7 @@
                 });
             });
 
-            // Scraper control events
+            // Controller actions
             btnStart.addEventListener('click', startCrawler);
             btnStop.addEventListener('click', stopCrawler);
             btnReset.addEventListener('click', resetDatabase);
@@ -1265,14 +1598,22 @@
 
             // Concurrency Slider
             workerSlider.addEventListener('input', (e) => {
-                const val = e.target.value;
-                workerVal.innerText = val;
+                workerVal.innerText = e.target.value;
             });
             workerSlider.addEventListener('change', (e) => {
                 updateConcurrency(e.target.value);
             });
 
-            // Modal events
+            // Mailer Config delay slider
+            delaySlider.addEventListener('input', (e) => {
+                delayVal.innerText = parseFloat(e.target.value).toFixed(1) + "s";
+            });
+
+            btnTestEmail.addEventListener('click', sendTestEmail);
+            btnStartCampaign.addEventListener('click', startCampaign);
+            btnStopCampaign.addEventListener('click', stopCampaign);
+
+            // Modals close events
             closeModalBtn.addEventListener('click', () => {
                 errorModal.classList.remove('open');
             });
@@ -1281,30 +1622,9 @@
                     errorModal.classList.remove('open');
                 }
             });
-
-            // Campaign Manager Modal events
-            btnCampaignModal.addEventListener('click', () => {
-                campaignModal.classList.add('open');
-            });
-            closeCampaignBtn.addEventListener('click', () => {
-                campaignModal.classList.remove('open');
-            });
-            window.addEventListener('click', (e) => {
-                if (e.target === campaignModal) {
-                    campaignModal.classList.remove('open');
-                }
-            });
-
-            delaySlider.addEventListener('input', (e) => {
-                delayVal.innerText = parseFloat(e.target.value).toFixed(1);
-            });
-
-            btnTestEmail.addEventListener('click', sendTestEmail);
-            btnStartCampaign.addEventListener('click', startCampaign);
-            btnStopCampaign.addEventListener('click', stopCampaign);
         });
 
-        // Load statistics
+        // Load stats
         async function loadStats() {
             try {
                 const response = await fetch('/api/stats');
@@ -1327,7 +1647,7 @@
                     btnStop.style.display = 'none';
                 }
 
-                // Update stat cards
+                // Update cards
                 document.getElementById('stat-total').innerText = data.stats.total.toLocaleString();
                 document.getElementById('stat-done').innerText = data.stats.done.toLocaleString();
                 document.getElementById('stat-crawling').innerText = data.stats.crawling.toLocaleString();
@@ -1336,16 +1656,19 @@
                 document.getElementById('stat-emails').innerText = data.stats.emailsFound.toLocaleString();
                 document.getElementById('stat-phones').innerText = data.stats.phonesFound.toLocaleString();
                 
-                document.getElementById('stat-success-rate').innerText = `${data.stats.successRate}% Success Rate`;
+                document.getElementById('stat-success-rate').innerText = `${data.stats.successRate}% Success Yield`;
+
+                // Update circular progress bar ring
+                updateSuccessRing(data.stats.successRate);
 
                 // Update ETA / Elapsed
-                const etaMeta = document.getElementById('stat-eta');
+                const etaDesc = document.getElementById('stat-eta');
                 if (isRunning) {
                     const elapsed = formatTime(data.stats.elapsedSeconds);
                     const eta = data.stats.etaSeconds ? formatTime(data.stats.etaSeconds) : '--:--';
-                    etaMeta.innerText = `Elapsed: ${elapsed} | ETA: ${eta}`;
+                    etaDesc.innerText = `Elapsed: ${elapsed} | ETA: ${eta}`;
                 } else {
-                    etaMeta.innerText = 'Crawler Idle';
+                    etaDesc.innerText = 'Crawler Idle';
                 }
 
                 // Update Active URLs
@@ -1358,19 +1681,33 @@
                         </div>
                     `).join('');
                 } else {
-                    activeUrlsContainer.innerHTML = '<div class="no-active">No pages being crawled.</div>';
+                    activeUrlsContainer.innerHTML = `
+                        <div style="font-size: 0.78rem; color: var(--text-tertiary); text-align: center; padding: 2rem 0; font-style: italic;">
+                            No pages being crawled.
+                        </div>
+                    `;
                 }
 
-                // Refresh table if crawler is running
+                // Refresh table if crawler is active
                 if (isRunning) {
                     loadIndustries();
                 }
 
-                // Poll Campaign Status
+                // Refresh Campaign Status
                 await loadCampaignStatus();
             } catch (err) {
                 console.error("Failed to load statistics:", err);
             }
+        }
+
+        // Circular progress ring helper
+        function updateSuccessRing(pct) {
+            const ring = document.getElementById('success-ring');
+            const ringPct = document.getElementById('ring-pct');
+            ringPct.innerText = `${Math.round(pct)}%`;
+            // Circumference = 314.159
+            const offset = 314.159 - (pct / 100) * 314.159;
+            ring.style.strokeDashoffset = offset;
         }
 
         // Load mailing campaign status
@@ -1379,7 +1716,7 @@
                 const response = await fetch('/api/mail/status');
                 const data = await response.json();
                 
-                const statsContainer = document.getElementById('campaign-stats-container');
+                const statsContainer = document.getElementById('campaign-banner');
                 const statusLabel = document.getElementById('campaign-status-label');
                 const countsText = document.getElementById('campaign-counts');
                 const progressBar = document.getElementById('campaign-progress-bar');
@@ -1395,13 +1732,13 @@
                     statusLabel.style.color = 'var(--accent-indigo)';
                     countsText.innerText = `${data.sent} / ${data.total} sent`;
                     
-                    const pct = data.total > 0 ? (data.sent + data.failed) / data.total * 100 : 0;
+                    const pct = data.total > 0 ? ((data.sent + data.failed) / data.total) * 100 : 0;
                     progressBar.style.width = `${pct}%`;
                     
                     currentCompany.innerText = data.current_company || '-';
                     failedCount.innerText = `Failed: ${data.failed}`;
                     
-                    // Refresh main list to show Sent tags
+                    // Refresh main list
                     loadIndustries();
                 } else {
                     btnStopCampaign.style.display = 'none';
@@ -1409,7 +1746,7 @@
                     
                     if (data.total > 0) {
                         statsContainer.style.display = 'flex';
-                        statusLabel.innerText = data.stop_requested ? 'Campaign Stopped' : 'Campaign Completed';
+                        statusLabel.innerText = data.stop_requested ? 'Campaign Terminated' : 'Campaign Completed';
                         statusLabel.style.color = data.failed > 0 ? 'var(--accent-red)' : 'var(--accent-green)';
                         countsText.innerText = `${data.sent} / ${data.total} sent`;
                         progressBar.style.width = '100%';
@@ -1424,7 +1761,7 @@
             }
         }
 
-        // Load industries
+        // Load list data
         async function loadIndustries() {
             const status = filterStatus.value;
             const source = filterSource.value;
@@ -1440,14 +1777,14 @@
                 
                 totalRecords = data.total;
                 
-                // Populate sectors dropdown if needed
+                // Update dropdown options
                 updateSectorsDropdown(data.sources);
 
-                // Render table rows
+                // Render rows
                 if (data.items.length === 0) {
                     leadsTableBody.innerHTML = `
                         <tr>
-                            <td colspan="6" class="no-data">No leads found matching your criteria.</td>
+                            <td colspan="7" class="no-data" style="text-align: center; padding: 3rem 0; font-style: italic; color: var(--text-tertiary);">No leads found.</td>
                         </tr>
                     `;
                 } else {
@@ -1455,12 +1792,12 @@
                         const hasEmail = item.email || item.exec_email || item.hr_email;
                         const hasPhone = item.phone;
                         
-                        let contactsHtml = '<ul class="contact-info-list">';
-                        if (item.email) contactsHtml += `<li class="contact-item"><i class="fa-regular fa-envelope"></i><span>${item.email}</span><span class="tag-badge">General</span></li>`;
-                        if (item.exec_email) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-user-tie"></i><span>${item.exec_email}</span><span class="tag-badge">Exec</span></li>`;
-                        if (item.hr_email) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-briefcase"></i><span>${item.hr_email}</span><span class="tag-badge">HR</span></li>`;
-                        if (item.phone) contactsHtml += `<li class="contact-item"><i class="fa-solid fa-phone"></i><span>${item.phone}</span></li>`;
-                        if (!hasEmail && !hasPhone) contactsHtml += `<li class="contact-item" style="color: var(--text-secondary); font-style: italic;">No contacts discovered yet</li>`;
+                        let contactsHtml = '<ul class="contact-list">';
+                        if (item.email) contactsHtml += `<li class="contact-row"><i class="fa-regular fa-envelope"></i><span>${item.email}</span><span class="tag">General</span></li>`;
+                        if (item.exec_email) contactsHtml += `<li class="contact-row"><i class="fa-solid fa-user-tie"></i><span>${item.exec_email}</span><span class="tag">Exec</span></li>`;
+                        if (item.hr_email) contactsHtml += `<li class="contact-row"><i class="fa-solid fa-briefcase"></i><span>${item.hr_email}</span><span class="tag">HR</span></li>`;
+                        if (item.phone) contactsHtml += `<li class="contact-row"><i class="fa-solid fa-phone"></i><span>${item.phone}</span></li>`;
+                        if (!hasEmail && !hasPhone) contactsHtml += `<li class="contact-row" style="color: var(--text-tertiary); font-style: italic;">No contacts found</li>`;
                         contactsHtml += '</ul>';
 
                         const websiteHtml = item.website ? `
@@ -1468,7 +1805,7 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 <span>${item.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
                             </a>
-                        ` : '<span style="color: var(--text-secondary); font-style: italic;">No website</span>';
+                        ` : '<span style="color: var(--text-tertiary); font-style: italic;">No website</span>';
 
                         const statusText = item.crawl_status;
                         let statusHtml = `<span class="status-pill ${statusText}">${statusText.replace('_', ' ')}</span>`;
@@ -1476,11 +1813,11 @@
                             statusHtml += `<br><button class="error-btn" onclick="showError('${escapeHtml(item.error_message)}')">View Error</button>`;
                         }
 
-                        let mailStatusHtml = '<span class="status-pill pending" style="background: rgba(100, 116, 139, 0.05); color: var(--text-secondary); border: 1px solid rgba(100, 116, 139, 0.15);">Not Sent</span>';
+                        let mailStatusHtml = '<span class="status-pill pending" style="background: rgba(100, 116, 139, 0.04); color: var(--text-secondary); border-color: rgba(100, 116, 139, 0.15);">Not Sent</span>';
                         if (item.email_sent_status === 'sent') {
                             mailStatusHtml = `<span class="status-pill done" style="cursor: help;" title="Sent at: ${item.email_sent_at}">Sent</span>`;
                         } else if (item.email_sent_status === 'failed') {
-                            mailStatusHtml = `<span class="status-pill failed" style="cursor: help;" title="Error: ${escapeHtml(item.email_sent_error || 'Unknown Error')}">Failed</span>`;
+                            mailStatusHtml = `<span class="status-pill failed" style="cursor: help;" title="Error: ${escapeHtml(item.email_sent_error || 'SMTP Error')}">Failed</span>`;
                         }
 
                         return `
@@ -1488,13 +1825,13 @@
                                 <td>${item.id}</td>
                                 <td>
                                     <div class="company-name">${escapeHtml(item.industry_name)}</div>
-                                    <div style="font-size: 0.72rem; color: var(--accent-indigo); margin-top: 4px;">
+                                    <div style="font-size: 0.72rem; color: var(--accent-indigo); margin-top: 4px; font-weight: 500;">
                                         <i class="fa-solid fa-tag"></i> ${escapeHtml(item.source || 'Import')}
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="location-text">${escapeHtml(item.city || '')}${item.city && item.state ? ', ' : ''}${escapeHtml(item.state || '')}</span>
-                                    <div style="font-size: 0.72rem; color: var(--text-secondary);">${item.country || 'US'}</div>
+                                    <span class="location-label">${escapeHtml(item.city || '')}${item.city && item.state ? ', ' : ''}${escapeHtml(item.state || '')}</span>
+                                    <div style="font-size: 0.72rem; color: var(--text-tertiary);">${item.country || 'US'}</div>
                                 </td>
                                 <td>${websiteHtml}</td>
                                 <td>${contactsHtml}</td>
@@ -1505,7 +1842,7 @@
                     }).join('');
                 }
 
-                // Update pagination controls
+                // Update paging state
                 const start = totalRecords === 0 ? 0 : offset + 1;
                 const end = Math.min(offset + limit, totalRecords);
                 paginationInfo.innerText = `Showing ${start} to ${end} of ${totalRecords.toLocaleString()} leads`;
@@ -1518,14 +1855,12 @@
             }
         }
 
-        // Populate sectors dropdown dynamically
+        // Sectors Dropdown dynamic sync
         function updateSectorsDropdown(sources) {
             const currentVal = filterSource.value;
             const currentCampaignVal = document.getElementById('campaign-sector').value;
             
-            // Re-render choices keeping 'All Sectors' at top
             filterSource.innerHTML = '<option value="all">All Sectors</option>';
-            
             const campaignSector = document.getElementById('campaign-sector');
             campaignSector.innerHTML = '<option value="all">All Sectors</option>';
 
@@ -1544,7 +1879,7 @@
             });
         }
 
-        // Actions
+        // Start / Stop Crawler commands
         async function startCrawler() {
             try {
                 const res = await fetch('/api/run', { method: 'POST' });
@@ -1574,7 +1909,7 @@
         }
 
         async function resetDatabase() {
-            if (!confirm("Are you absolutely sure you want to reset all lead crawl statuses? This will wipe all discovered emails/phones and mark them all back as 'pending' for a clean re-run.")) {
+            if (!confirm("Are you sure you want to reset all crawl statuses and clear email/phone values? This will wipe your progress for a clean reload.")) {
                 return;
             }
             try {
@@ -1615,7 +1950,7 @@
             try {
                 await fetch(`/api/concurrency?worker_count=${workers}`, { method: 'POST' });
             } catch (err) {
-                console.error("Failed to update workers concurrency:", err);
+                console.error("Failed to update concurrency:", err);
             }
         }
 
@@ -1627,7 +1962,7 @@
             window.open(`/api/export?status=${status}&source=${source}&contact_filter=${contactFilter}&search=${encodeURIComponent(search)}`, '_blank');
         }
 
-        // Email Campaign Actions
+        // Email campaigner integrations
         async function sendTestEmail() {
             const smtpServer = document.getElementById('smtp-server').value;
             const smtpPort = parseInt(document.getElementById('smtp-port').value);
@@ -1637,12 +1972,12 @@
             const recipientEmail = document.getElementById('test-recipient').value;
 
             if (!smtpServer || !smtpPort || !senderEmail || !recipientEmail) {
-                alert("Please fill SMTP Server, Port, Sender Email, and Test Recipient fields.");
+                alert("Please complete SMTP Server, Port, Sender Email, and Test Recipient fields.");
                 return;
             }
 
             btnTestEmail.disabled = true;
-            btnTestEmail.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending Test...';
+            btnTestEmail.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
 
             try {
                 const response = await fetch('/api/mail/test', {
@@ -1659,16 +1994,16 @@
                 });
                 const data = await response.json();
                 if (data.status === 'success') {
-                    alert("Test email sent successfully!");
+                    alert("Test email dispatched successfully!");
                 } else {
                     alert("Failed to send test email: " + data.message);
                 }
             } catch (err) {
-                console.error("Test email request error:", err);
-                alert("An error occurred during test email sending.");
+                console.error("Test email sending error:", err);
+                alert("Error occurred requesting test email dispatch.");
             } finally {
                 btnTestEmail.disabled = false;
-                btnTestEmail.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Test Email';
+                btnTestEmail.innerHTML = '<i class="fa-solid fa-flask"></i> Send Test';
             }
         }
 
@@ -1685,11 +2020,11 @@
             const delay = parseFloat(delaySlider.value);
 
             if (!smtpServer || !smtpPort || !senderEmail || !subject || !body) {
-                alert("Please configure SMTP settings and write an Email Subject & Body.");
+                alert("Complete SMTP server settings, write Subject and Body to start.");
                 return;
             }
 
-            if (!confirm(`Are you sure you want to start sending emails to leads in the '${sector}' sector?`)) {
+            if (!confirm(`Launch email campaign for sector '${sector}'?`)) {
                 return;
             }
 
@@ -1715,11 +2050,11 @@
                 if (data.status === 'success') {
                     loadCampaignStatus();
                 } else {
-                    alert("Failed to start campaign: " + data.message);
+                    alert("Failed to launch campaign: " + data.message);
                 }
             } catch (err) {
                 console.error("Start campaign error:", err);
-                alert("An error occurred starting the campaign.");
+                alert("Error requesting campaign launch.");
             } finally {
                 btnStartCampaign.disabled = false;
             }
@@ -1739,13 +2074,25 @@
             }
         }
 
-        // Show error popup
+        // Insert tags into body template at cursor
+        window.insertTag = function(tag) {
+            const textarea = document.getElementById('campaign-body');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const val = textarea.value;
+            
+            textarea.value = val.substring(0, start) + tag + val.substring(end);
+            textarea.focus();
+            textarea.selectionStart = textarea.selectionEnd = start + tag.length;
+        }
+
+        // Show error details dialog
         window.showError = function(errMsg) {
             modalErrorContent.innerText = errMsg;
             errorModal.classList.add('open');
         }
 
-        // Helper utilities
+        // Time format utility
         function formatTime(secs) {
             if (isNaN(secs) || secs < 0) return '0s';
             const h = Math.floor(secs / 3600);
@@ -1761,7 +2108,7 @@
             return `${s}s`;
         }
 
-        // Escaping HTML utility
+        // HTML sanitization
         function escapeHtml(unsafe) {
             return unsafe
                  .replace(/&/g, "&amp;")
