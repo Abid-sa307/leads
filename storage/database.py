@@ -95,6 +95,16 @@ class Database:
             row = await cur.fetchone()
             current_version = row[0] if row and row[0] is not None else 0
 
+        if current_version < 2:
+            try:
+                await self._conn.execute("ALTER TABLE industries ADD COLUMN email_sent_status TEXT")
+                await self._conn.execute("ALTER TABLE industries ADD COLUMN email_sent_at TEXT")
+                await self._conn.execute("ALTER TABLE industries ADD COLUMN email_sent_error TEXT")
+                await self._conn.commit()
+                logger.info("Migrated database to version 2: added email_sent columns.")
+            except aiosqlite.OperationalError:
+                pass
+
         if current_version < SCHEMA_VERSION:
             await self._conn.execute(
                 "INSERT OR IGNORE INTO schema_version (version) VALUES (?)",
@@ -186,6 +196,35 @@ class Database:
                     status.value,
                     error_message,
                     1 if increment_retry else 0,
+                    datetime.now(UTC).isoformat(),
+                    industry_id,
+                ),
+            )
+            await self._conn.commit()
+
+    async def update_mail_status(
+        self,
+        industry_id: int,
+        status: str,
+        sent_at: Optional[str] = None,
+        error_message: Optional[str] = None,
+    ) -> None:
+        """Update email campaign status for a lead."""
+        assert self._conn
+        async with self._lock:
+            await self._conn.execute(
+                """
+                UPDATE industries
+                SET email_sent_status = ?,
+                    email_sent_at     = ?,
+                    email_sent_error  = ?,
+                    last_updated      = ?
+                WHERE id = ?
+                """,
+                (
+                    status,
+                    sent_at,
+                    error_message,
                     datetime.now(UTC).isoformat(),
                     industry_id,
                 ),

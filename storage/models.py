@@ -69,6 +69,9 @@ class Industry(BaseModel):
     raw_website_input: Optional[str] = Field(None, description="Original website from import")
     last_updated: Optional[datetime] = Field(None, description="Timestamp of last update")
     created_at: Optional[datetime] = Field(None, description="Timestamp of record creation")
+    email_sent_status: Optional[str] = Field(None, description="Email campaign delivery status")
+    email_sent_at: Optional[datetime] = Field(None, description="Timestamp of email campaign sending")
+    email_sent_error: Optional[str] = Field(None, description="Error details if sending failed")
 
     @field_validator("industry_name")
     @classmethod
@@ -200,6 +203,9 @@ CREATE TABLE IF NOT EXISTS industries (
     raw_website_input   TEXT,
     last_updated        TEXT,
     created_at          TEXT    NOT NULL DEFAULT (datetime('now')),
+    email_sent_status   TEXT,
+    email_sent_at       TEXT,
+    email_sent_error    TEXT,
     UNIQUE(industry_name, city, state)
 );
 
@@ -233,4 +239,4 @@ CREATE INDEX IF NOT EXISTS idx_industries_name    ON industries(industry_name);
 CREATE INDEX IF NOT EXISTS idx_crawl_log_industry ON crawl_log(industry_id);
 """
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2

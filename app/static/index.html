@@ -799,6 +799,10 @@
         </div>
         
         <div class="header-controls">
+            <button id="btn-campaign-modal" class="theme-toggle-btn" title="Open Email Campaigner" style="width: auto; border-radius: 12px; padding: 0 14px; gap: 6px;">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Campaigner</span>
+            </button>
             <button id="btn-theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -949,7 +953,8 @@
                                 <th>Location</th>
                                 <th>Official Website</th>
                                 <th>Discovered Contact Info</th>
-                                <th data-field="crawl_status">Status <i class="fa-solid fa-sort"></i></th>
+                                <th data-field="crawl_status">Crawl Status <i class="fa-solid fa-sort"></i></th>
+                                <th>Mail Status</th>
                             </tr>
                         </thead>
                         <tbody id="leads-table-body">
@@ -978,6 +983,134 @@
             <div class="modal-title">Crawl Error Details</div>
             <div id="modal-error-content" class="modal-text">
                 Some error message will go here...
+            </div>
+        </div>
+    </div>
+
+    <!-- Campaigner Modal -->
+    <div id="campaign-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; display: flex; flex-direction: column; gap: 16px;">
+            <span class="close-modal" id="close-campaign-btn">&times;</span>
+            <div class="modal-title" style="color: var(--accent-indigo); display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Email Campaign Manager</span>
+            </div>
+            
+            <div class="campaign-grid" style="display: grid; grid-template-columns: 360px 1fr; gap: 24px;">
+                <!-- Left: Configuration & Target -->
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
+                        SMTP Configuration
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.72rem; color: var(--text-secondary);">SMTP Server</label>
+                            <input type="text" id="smtp-server" class="search-input" style="padding: 7px 10px;" placeholder="smtp.gmail.com">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.72rem; color: var(--text-secondary);">SMTP Port</label>
+                            <input type="number" id="smtp-port" class="search-input" style="padding: 7px 10px;" value="587">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="smtp-ssl" style="cursor: pointer;">
+                        <label for="smtp-ssl" style="font-size: 0.78rem; cursor: pointer; user-select: none;">Use SSL/TLS (Port 465)</label>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Sender Email</label>
+                        <input type="email" id="smtp-sender" class="search-input" style="padding: 7px 10px;" placeholder="sender@example.com">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">App Password / Password</label>
+                        <input type="password" id="smtp-password" class="search-input" style="padding: 7px 10px;" placeholder="••••••••••••••••">
+                    </div>
+
+                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; margin-top: 10px;">
+                        Targeting
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Target Sector</label>
+                        <select id="campaign-sector" class="select-filter" style="width: 100%; padding: 7px 10px;">
+                            <option value="all">All Sectors</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Target Email Role</label>
+                        <select id="campaign-email-type" class="select-filter" style="width: 100%; padding: 7px 10px;">
+                            <option value="any">Any Discovered Email</option>
+                            <option value="general">General (e.g. info@...)</option>
+                            <option value="hr">Human Resources (e.g. careers@...)</option>
+                            <option value="exec">Executive (e.g. ceo@...)</option>
+                        </select>
+                    </div>
+
+                    <div class="slider-container" style="margin-top: 6px;">
+                        <div class="slider-label" style="font-size: 0.72rem;">
+                            <span>Sending Delay (Seconds)</span>
+                            <span id="delay-val">2.0</span>
+                        </div>
+                        <input type="range" min="0.5" max="10" step="0.5" value="2.0" class="slider" id="delay-slider">
+                    </div>
+                </div>
+
+                <!-- Right: Template & Campaigns -->
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
+                        Email Template
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">Email Subject</label>
+                        <input type="text" id="campaign-subject" class="search-input" style="padding: 7px 10px;" placeholder="Business Inquiry: {company_name}">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.72rem; color: var(--text-secondary);">
+                            Email Body (Placeholders: {company_name}, {city}, {state}, {website}, {email})
+                        </label>
+                        <textarea id="campaign-body" class="search-input" style="padding: 10px; height: 140px; font-family: inherit; font-size: 0.82rem; resize: none;" 
+                            placeholder="Dear Team at {company_name},&#10;&#10;We noticed your operations in {city}, {state} and would love to connect.&#10;&#10;Best regards,&#10;Sales Team"></textarea>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-top: 10px; align-items: flex-end;">
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 0.72rem; color: var(--text-secondary);">Test Recipient Email</label>
+                            <input type="email" id="test-recipient" class="search-input" style="padding: 7px 10px; font-size: 0.78rem;" placeholder="test-receiver@example.com">
+                            <button id="btn-test-email" class="btn btn-secondary" style="padding: 7px 10px; font-size: 0.78rem; width: 100%;">
+                                <i class="fa-solid fa-paper-plane"></i> Send Test Email
+                            </button>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 4px; width: 100%;">
+                            <button id="btn-start-campaign" class="btn btn-primary" style="width: 100%; height: 38px;">
+                                <i class="fa-solid fa-play"></i> Start Campaign
+                            </button>
+                            <button id="btn-stop-campaign" class="btn btn-danger" style="width: 100%; height: 38px; display: none;">
+                                <i class="fa-solid fa-stop"></i> Stop Campaign
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Campaign Stats -->
+                    <div id="campaign-stats-container" style="display: none; background: var(--active-item-bg); border: 1px solid var(--active-item-border); border-radius: 12px; padding: 12px; margin-top: 10px; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+                            <span id="campaign-status-label" style="color: var(--accent-indigo);">Campaign Running...</span>
+                            <span id="campaign-counts">0 / 0 sent</span>
+                        </div>
+                        <div style="height: 6px; background: rgba(99, 102, 241, 0.15); border-radius: 3px; overflow: hidden; position: relative;">
+                            <div id="campaign-progress-bar" style="width: 0%; height: 100%; background: var(--accent-indigo); transition: width 0.3s;"></div>
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--text-secondary); display: flex; justify-content: space-between;">
+                            <span>Current: <strong id="campaign-current-company" style="color: var(--text-primary);">-</strong></span>
+                            <span id="campaign-failed-count" style="color: var(--accent-red);">Failed: 0</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1015,6 +1148,16 @@
         // Slider
         const workerSlider = document.getElementById('worker-count-slider');
         const workerVal = document.getElementById('worker-count-val');
+
+        // Campaign Manager Elements
+        const campaignModal = document.getElementById('campaign-modal');
+        const btnCampaignModal = document.getElementById('btn-campaign-modal');
+        const closeCampaignBtn = document.getElementById('close-campaign-btn');
+        const btnStartCampaign = document.getElementById('btn-start-campaign');
+        const btnStopCampaign = document.getElementById('btn-stop-campaign');
+        const btnTestEmail = document.getElementById('btn-test-email');
+        const delaySlider = document.getElementById('delay-slider');
+        const delayVal = document.getElementById('delay-val');
 
         // Modal
         const errorModal = document.getElementById('error-modal');
@@ -1138,6 +1281,27 @@
                     errorModal.classList.remove('open');
                 }
             });
+
+            // Campaign Manager Modal events
+            btnCampaignModal.addEventListener('click', () => {
+                campaignModal.classList.add('open');
+            });
+            closeCampaignBtn.addEventListener('click', () => {
+                campaignModal.classList.remove('open');
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === campaignModal) {
+                    campaignModal.classList.remove('open');
+                }
+            });
+
+            delaySlider.addEventListener('input', (e) => {
+                delayVal.innerText = parseFloat(e.target.value).toFixed(1);
+            });
+
+            btnTestEmail.addEventListener('click', sendTestEmail);
+            btnStartCampaign.addEventListener('click', startCampaign);
+            btnStopCampaign.addEventListener('click', stopCampaign);
         });
 
         // Load statistics
@@ -1201,8 +1365,62 @@
                 if (isRunning) {
                     loadIndustries();
                 }
+
+                // Poll Campaign Status
+                await loadCampaignStatus();
             } catch (err) {
                 console.error("Failed to load statistics:", err);
+            }
+        }
+
+        // Load mailing campaign status
+        async function loadCampaignStatus() {
+            try {
+                const response = await fetch('/api/mail/status');
+                const data = await response.json();
+                
+                const statsContainer = document.getElementById('campaign-stats-container');
+                const statusLabel = document.getElementById('campaign-status-label');
+                const countsText = document.getElementById('campaign-counts');
+                const progressBar = document.getElementById('campaign-progress-bar');
+                const currentCompany = document.getElementById('campaign-current-company');
+                const failedCount = document.getElementById('campaign-failed-count');
+
+                if (data.active) {
+                    btnStartCampaign.style.display = 'none';
+                    btnStopCampaign.style.display = 'block';
+                    statsContainer.style.display = 'flex';
+                    
+                    statusLabel.innerText = data.stop_requested ? 'Stopping Campaign...' : 'Campaign Running...';
+                    statusLabel.style.color = 'var(--accent-indigo)';
+                    countsText.innerText = `${data.sent} / ${data.total} sent`;
+                    
+                    const pct = data.total > 0 ? (data.sent + data.failed) / data.total * 100 : 0;
+                    progressBar.style.width = `${pct}%`;
+                    
+                    currentCompany.innerText = data.current_company || '-';
+                    failedCount.innerText = `Failed: ${data.failed}`;
+                    
+                    // Refresh main list to show Sent tags
+                    loadIndustries();
+                } else {
+                    btnStopCampaign.style.display = 'none';
+                    btnStartCampaign.style.display = 'block';
+                    
+                    if (data.total > 0) {
+                        statsContainer.style.display = 'flex';
+                        statusLabel.innerText = data.stop_requested ? 'Campaign Stopped' : 'Campaign Completed';
+                        statusLabel.style.color = data.failed > 0 ? 'var(--accent-red)' : 'var(--accent-green)';
+                        countsText.innerText = `${data.sent} / ${data.total} sent`;
+                        progressBar.style.width = '100%';
+                        currentCompany.innerText = 'None';
+                        failedCount.innerText = `Failed: ${data.failed}`;
+                    } else {
+                        statsContainer.style.display = 'none';
+                    }
+                }
+            } catch (err) {
+                console.error("Error loading campaign status:", err);
             }
         }
 
@@ -1258,6 +1476,13 @@
                             statusHtml += `<br><button class="error-btn" onclick="showError('${escapeHtml(item.error_message)}')">View Error</button>`;
                         }
 
+                        let mailStatusHtml = '<span class="status-pill pending" style="background: rgba(100, 116, 139, 0.05); color: var(--text-secondary); border: 1px solid rgba(100, 116, 139, 0.15);">Not Sent</span>';
+                        if (item.email_sent_status === 'sent') {
+                            mailStatusHtml = `<span class="status-pill done" style="cursor: help;" title="Sent at: ${item.email_sent_at}">Sent</span>`;
+                        } else if (item.email_sent_status === 'failed') {
+                            mailStatusHtml = `<span class="status-pill failed" style="cursor: help;" title="Error: ${escapeHtml(item.email_sent_error || 'Unknown Error')}">Failed</span>`;
+                        }
+
                         return `
                             <tr>
                                 <td>${item.id}</td>
@@ -1274,6 +1499,7 @@
                                 <td>${websiteHtml}</td>
                                 <td>${contactsHtml}</td>
                                 <td>${statusHtml}</td>
+                                <td>${mailStatusHtml}</td>
                             </tr>
                         `;
                     }).join('');
@@ -1295,15 +1521,26 @@
         // Populate sectors dropdown dynamically
         function updateSectorsDropdown(sources) {
             const currentVal = filterSource.value;
+            const currentCampaignVal = document.getElementById('campaign-sector').value;
             
             // Re-render choices keeping 'All Sectors' at top
             filterSource.innerHTML = '<option value="all">All Sectors</option>';
+            
+            const campaignSector = document.getElementById('campaign-sector');
+            campaignSector.innerHTML = '<option value="all">All Sectors</option>';
+
             sources.forEach(src => {
                 const opt = document.createElement('option');
                 opt.value = src;
                 opt.innerText = src;
                 if (src === currentVal) opt.selected = true;
                 filterSource.appendChild(opt);
+
+                const optCamp = document.createElement('option');
+                optCamp.value = src;
+                optCamp.innerText = src;
+                if (src === currentCampaignVal) optCamp.selected = true;
+                campaignSector.appendChild(optCamp);
             });
         }
 
@@ -1388,6 +1625,118 @@
             const contactFilter = filterContact.value;
             const search = searchInput.value;
             window.open(`/api/export?status=${status}&source=${source}&contact_filter=${contactFilter}&search=${encodeURIComponent(search)}`, '_blank');
+        }
+
+        // Email Campaign Actions
+        async function sendTestEmail() {
+            const smtpServer = document.getElementById('smtp-server').value;
+            const smtpPort = parseInt(document.getElementById('smtp-port').value);
+            const useSsl = document.getElementById('smtp-ssl').checked;
+            const senderEmail = document.getElementById('smtp-sender').value;
+            const senderPassword = document.getElementById('smtp-password').value;
+            const recipientEmail = document.getElementById('test-recipient').value;
+
+            if (!smtpServer || !smtpPort || !senderEmail || !recipientEmail) {
+                alert("Please fill SMTP Server, Port, Sender Email, and Test Recipient fields.");
+                return;
+            }
+
+            btnTestEmail.disabled = true;
+            btnTestEmail.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending Test...';
+
+            try {
+                const response = await fetch('/api/mail/test', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        smtp_server: smtpServer,
+                        smtp_port: smtpPort,
+                        use_ssl: useSsl,
+                        sender_email: senderEmail,
+                        sender_password: senderPassword,
+                        recipient_email: recipientEmail
+                    })
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    alert("Test email sent successfully!");
+                } else {
+                    alert("Failed to send test email: " + data.message);
+                }
+            } catch (err) {
+                console.error("Test email request error:", err);
+                alert("An error occurred during test email sending.");
+            } finally {
+                btnTestEmail.disabled = false;
+                btnTestEmail.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Test Email';
+            }
+        }
+
+        async function startCampaign() {
+            const smtpServer = document.getElementById('smtp-server').value;
+            const smtpPort = parseInt(document.getElementById('smtp-port').value);
+            const useSsl = document.getElementById('smtp-ssl').checked;
+            const senderEmail = document.getElementById('smtp-sender').value;
+            const senderPassword = document.getElementById('smtp-password').value;
+            const sector = document.getElementById('campaign-sector').value;
+            const emailType = document.getElementById('campaign-email-type').value;
+            const subject = document.getElementById('campaign-subject').value;
+            const body = document.getElementById('campaign-body').value;
+            const delay = parseFloat(delaySlider.value);
+
+            if (!smtpServer || !smtpPort || !senderEmail || !subject || !body) {
+                alert("Please configure SMTP settings and write an Email Subject & Body.");
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to start sending emails to leads in the '${sector}' sector?`)) {
+                return;
+            }
+
+            btnStartCampaign.disabled = true;
+            try {
+                const response = await fetch('/api/mail/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sector: sector,
+                        email_type: emailType,
+                        smtp_server: smtpServer,
+                        smtp_port: smtpPort,
+                        use_ssl: useSsl,
+                        sender_email: senderEmail,
+                        sender_password: senderPassword,
+                        subject: subject,
+                        body: body,
+                        delay_seconds: delay
+                    })
+                });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    loadCampaignStatus();
+                } else {
+                    alert("Failed to start campaign: " + data.message);
+                }
+            } catch (err) {
+                console.error("Start campaign error:", err);
+                alert("An error occurred starting the campaign.");
+            } finally {
+                btnStartCampaign.disabled = false;
+            }
+        }
+
+        async function stopCampaign() {
+            try {
+                const response = await fetch('/api/mail/stop', { method: 'POST' });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    loadCampaignStatus();
+                } else {
+                    alert("Failed to stop campaign: " + data.message);
+                }
+            } catch (err) {
+                console.error("Stop campaign error:", err);
+            }
         }
 
         // Show error popup

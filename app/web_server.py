@@ -17,6 +17,7 @@ from storage.database import Database
 from storage.models import Statistics, Industry, CrawlStatus
 from app.pipeline import Pipeline
 from app.logger import setup_logging
+from app.mailer import run_campaign_task, campaign_stats, send_single_email
 
 logger = logging.getLogger("crawl")
 
@@ -354,7 +355,8 @@ async def export_data(
         writer.writerow([
             "ID", "Industry Name", "City", "State", "Country", "Website", 
             "Email", "Phone", "Exec Email", "HR Email", "Source", "Crawl Status", 
-            "Retry Count", "Error Message", "Last Updated"
+            "Retry Count", "Error Message", "Last Updated",
+            "Email Sent Status", "Email Sent At", "Email Sent Error"
         ])
         yield output.getvalue()
         output.truncate(0)
@@ -370,7 +372,8 @@ async def export_data(
                         row["id"], row["industry_name"], row["city"], row["state"], row["country"],
                         row["website"], row["email"], row["phone"], row["exec_email"], row["hr_email"],
                         row["source"], row["crawl_status"], row["retry_count"], row["error_message"],
-                        row["last_updated"]
+                        row["last_updated"],
+                        row["email_sent_status"], row["email_sent_at"], row["email_sent_error"]
                     ])
                     yield output.getvalue()
                     output.truncate(0)
@@ -381,6 +384,84 @@ async def export_data(
         "Content-Type": "text/csv"
     }
     return StreamingResponse(csv_generator(), headers=headers)
+
+# Request schemas for mailing campaigns
+class MailSendRequest(BaseModel):
+    sector: str
+    email_type: str
+    smtp_server: str
+    smtp_port: int
+    use_ssl: bool
+    sender_email: str
+    sender_password: str
+    subject: str
+    body: str
+    delay_seconds: float = 2.0
+
+class MailTestRequest(BaseModel):
+    smtp_server: str
+    smtp_port: int
+    use_ssl: bool
+    sender_email: str
+    sender_password: str
+    recipient_email: str
+
+@app.post("/api/mail/test")
+async def test_mail_settings(req: MailTestRequest):
+    try:
+        await asyncio.to_thread(
+            send_single_email,
+            req.smtp_server,
+            req.smtp_port,
+            req.use_ssl,
+            req.sender_email,
+            req.sender_password,
+            req.recipient_email,
+            "Test Email - Industry Leads Discoverer",
+            "This is a test email confirming that your SMTP connection settings in the Industry Leads Discoverer app are valid!"
+        )
+        return {"status": "success", "message": "Test email sent successfully."}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/mail/send")
+async def send_mail_campaign(req: MailSendRequest, background_tasks: BackgroundTasks):
+    if campaign_stats.active:
+        return {"status": "error", "message": "A mailing campaign is already running."}
+    
+    background_tasks.add_task(
+        run_campaign_task,
+        req.sector,
+        req.email_type,
+        req.smtp_server,
+        req.smtp_port,
+        req.use_ssl,
+        req.sender_email,
+        req.sender_password,
+        req.subject,
+        req.body,
+        req.delay_seconds
+    )
+    return {"status": "success", "message": "Email campaign started in the background."}
+
+@app.post("/api/mail/stop")
+async def stop_mail_campaign():
+    if not campaign_stats.active:
+        return {"status": "error", "message": "No active mailing campaign is running."}
+    campaign_stats.stop_requested = True
+    return {"status": "success", "message": "Email campaign shutdown requested."}
+
+@app.get("/api/mail/status")
+async def get_mail_campaign_status():
+    return {
+        "active": campaign_stats.active,
+        "total": campaign_stats.total,
+        "sent": campaign_stats.sent,
+        "failed": campaign_stats.failed,
+        "current_company": campaign_stats.current_company,
+        "errors": campaign_stats.errors,
+        "stop_requested": campaign_stats.stop_requested
+    }
 
 # Mount the static files directory at /static
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
